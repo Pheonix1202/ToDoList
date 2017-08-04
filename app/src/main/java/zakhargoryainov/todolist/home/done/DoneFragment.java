@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist;
+package zakhargoryainov.todolist.todo.home.done;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,15 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import zakhargoryainov.todolist.R;
+
 /**
  * Created by Захар on 02.08.2017.
  */
 
-public class TodoFragment extends Fragment {
-    @Nullable
+public class DoneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_todo,container,false);
+        View view = inflater.inflate(R.layout.fragment_done,container,false);
         return view;
     }
 }

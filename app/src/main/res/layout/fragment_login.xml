@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/forest">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transparent_light">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:fontFamily="casual"
+            android:text="Sign in"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large">
+
+            <EditText
+                android:id="@+id/edit_text_email"
+                style="@style/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="@dimen/padding_normal"
+                android:hint="@string/hint_login"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/edit_text_password"
+                style="@style/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_shape"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/button_sign_in"
+                style="@style/style_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_shape_sign_in"
+                android:gravity="center"
+                android:text="Go"
+                android:textAllCaps="false" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="190dp"
+            android:layout_height="120dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/slide_arrow" />
+
+        <TextView
+            style="@style/style_text_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="56dp"
+            android:layout_marginRight="18dp"
+            android:text="Swipe aside to sign up"
+            android:textStyle="italic|bold" />
+
+        <com.github.silvestrpredko.dotprogressbar.DotProgressBar
+            android:id="@+id/dot_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="120dp"
+
+            app:amount="4"
+            app:animationDirection="right"
+            app:duration="@android:integer/config_mediumAnimTime"
+            app:endColor="@color/white"
+            app:startColor="#ccc" />
+
+
+    </FrameLayout>
+
+</FrameLayout>
