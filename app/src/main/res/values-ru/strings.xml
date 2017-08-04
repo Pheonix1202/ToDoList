@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Список дел</string>
+    <string name="button_change_avatar">Изменить автар</string>
+    <string name="button_exit">Выйти из профиля</string>
+    <string name="tab_title_done">Выполнено</string>
+    <string name="tab_title_todo">Выполнить</string>
+</resources>

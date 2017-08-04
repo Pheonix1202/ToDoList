@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">List</string>
+    <string name="tab_title_done">COMPLETED</string>
+    <string name="tab_title_todo">TO DO</string>
+    <string name="button_exit">Sign out</string>
+    <string name="button_change_avatar">Change avatar</string>
+</resources>
