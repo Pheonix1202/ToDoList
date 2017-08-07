@@ -3,5 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/black_transparent_normal"
-    />
+    android:textSize = "@dimen/text_size_common"
+    android:titleTextColor="@android:color/white"
+    android:fontFamily = "casual"
+    android:background="@color/black_transparent_normal" />

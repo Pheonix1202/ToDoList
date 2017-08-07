@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.authentication;
+package zakhargoryainov.todolist.authentication.presentation;
 
 import com.arellomobile.mvp.MvpView;
 

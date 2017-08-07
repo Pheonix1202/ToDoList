@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist;
+package zakhargoryainov.todolist.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

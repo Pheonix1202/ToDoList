@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.authentication.login;
+package zakhargoryainov.todolist.authentication.login;
 
 
 import com.arellomobile.mvp.MvpView;
@@ -8,26 +8,18 @@ import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 
-/**
- * Created by Захар on 01.08.2017.
- */
 
 @StateStrategyType(AddToEndStrategy.class)
 public interface LoginView extends MvpView {
 
-    //@StateStrategyType(SkipStrategy.class)
     void onSuccessSignIn();
 
-    void onFailedSignIn(String message); //todo mb showError?
+    void showError(String message);
 
-    @StateStrategyType(AddToEndSingleStrategy.class) //todo skipStrategy
+    @StateStrategyType(SkipStrategy.class)
     void showProgress();
 
-    @StateStrategyType(AddToEndSingleStrategy.class)
+    @StateStrategyType(SkipStrategy.class)
     void hideProgress();
-
-    void gotoRegistration();
-
-    void gotoHome();
 
 }

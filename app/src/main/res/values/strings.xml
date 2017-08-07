@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">List</string>
+    <string name="app_name"> ToDoList</string>
     <string name="tab_title_done">COMPLETED</string>
     <string name="tab_title_todo">TO DO</string>
+    <string name="hint_login">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="button_sign_in">Sign in</string>
+    <string name="button_sign_up">Sign up</string>
     <string name="button_exit">Sign out</string>
     <string name="button_change_avatar">Change avatar</string>
 </resources>

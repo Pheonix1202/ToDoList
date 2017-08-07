@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.home.done;
+package zakhargoryainov.todolist.home.done;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

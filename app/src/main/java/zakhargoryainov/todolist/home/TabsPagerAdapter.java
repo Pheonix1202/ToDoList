@@ -1,11 +1,11 @@
-package zakhargoryainov.todolist;
+package zakhargoryainov.todolist.home;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import zakhargoryainov.todolist.home.done.DoneFragment;
-import zakhargoryainov.todolist.home.todo.TodoFragment;
+import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 

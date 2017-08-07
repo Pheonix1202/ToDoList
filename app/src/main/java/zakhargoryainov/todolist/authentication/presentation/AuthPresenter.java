@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.authentication;
+package zakhargoryainov.todolist.authentication.presentation;
 
 /**
  * Created by Захар on 04.08.2017.

@@ -1,21 +1,16 @@
 
-package zakhargoryainov.todolist.todo.authentication.login;
+package zakhargoryainov.todolist.authentication.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.Px;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpActivity;
-import com.arellomobile.mvp.MvpFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,17 +22,17 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import zakhargoryainov.todolist.MvpAppCompatFragment;
+import zakhargoryainov.todolist.MainActivity;
+import zakhargoryainov.todolist.authentication.presentation.AuthActivity;
+import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.R;
+import zakhargoryainov.todolist.home.HomeActivity;
 
 /**
  * Created by Захар on 01.08.2017.
  */
 
-public class LoginFragment extends MvpAppCompatFragment implements LoginView{
-
-    @BindView(R.id.header)
-    TextView textView;
+public class LoginFragment extends MvpAppCompatFragment implements LoginView {
 
     @InjectPresenter
     LoginPresenter loginPresenter;
@@ -71,9 +66,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE|
-                        WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        dotProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -84,7 +77,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView{
 
     @OnClick(R.id.button_sign_in)
     public void OnSignInClick(){
-        loginPresenter.signIn( //todo validate this
+        loginPresenter.signIn( //todo surround fields with format exceptions?
                 editTexts.get(0).getText().toString(),
                 editTexts.get(1).getText().toString());
     }
@@ -92,10 +85,14 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView{
     @Override
     public void onSuccessSignIn() {
         Toast.makeText(getContext(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
-    public void onFailedSignIn(String message) {
+    public void showError(String message) {
         Toast.makeText(getContext() ,message, Toast.LENGTH_SHORT).show();
     }
 
@@ -107,16 +104,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView{
 
     @Override
     public void hideProgress() {
-        dotProgressBar.setVisibility(View.GONE);
+        dotProgressBar.setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    public void gotoRegistration() {
-
-    }
-
-    @Override
-    public void gotoHome() {
-
-    }
 }

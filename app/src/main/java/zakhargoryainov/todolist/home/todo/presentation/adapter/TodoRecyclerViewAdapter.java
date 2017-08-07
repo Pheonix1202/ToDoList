@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home.todo.adapter;
+package zakhargoryainov.todolist.home.todo.presentation.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,6 +15,7 @@ import zakhargoryainov.todolist.R;
  */
 
 public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerViewAdapter.TodoViewHolder>{
+
 
 
     @Override

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v4.widget.DrawerLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,34 +28,105 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dip"
                 android:background="@color/black_transparent_normal"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
+                android:fontFamily="casual"
+                android:textSize="@dimen/text_size_common"
                 android:textStyle="normal"
+                android:titleTextColor="@android:color/white"
                 app:pstsIndicatorColor="@android:color/white"
-                app:pstsIndicatorHeight="2dp"
+                app:pstsIndicatorHeight="@dimen/stroke_width_common"
                 app:pstsShouldExpand="true" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/black_transparent_light">
+            android:background="@color/black_transparent_light"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_normal">
 
-                <Button
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/image_view_home_photo"
+                    android:layout_width="@dimen/photo_width_height"
+                    android:layout_height="@dimen/photo_width_height"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/ic_cloud"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="true" />
+
+                <TextView
+                    android:id="@+id/text_view_name_first_last"
+                    style="@style/text_field"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Паркуюсь где захочу!" />
+                    android:layout_alignTop="@+id/image_view_home_photo"
+                    android:layout_marginLeft="@dimen/padding_normal"
+                    android:layout_toRightOf="@+id/image_view_home_photo"
+                    android:text="Goryainov Zakhar"
+                    android:textSize="@dimen/text_size_common" />
 
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/text_view_email"
+                    style="@style/text_field"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/text_view_name_first_last"
+                    android:layout_below="@+id/text_view_name_first_last"
+                    android:layout_marginTop="8dp"
+                    android:text="Sollex1202@gmail.com" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/stroke_width_common"
+                android:layout_marginLeft="-16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_field"
+                android:paddingTop="@dimen/padding_normal"
+                android:drawableLeft="@drawable/ic_cloud"
+                android:drawablePadding = "@dimen/padding_normal"
+                android:text="Profile"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_field"
+                android:paddingTop="@dimen/padding_normal"
+                android:drawableLeft="@drawable/ic_cloud"
+                android:drawablePadding = "@dimen/padding_normal"
+                android:text="Settings"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_field"
+                android:paddingTop="@dimen/padding_normal"
+                android:drawableLeft="@drawable/ic_cloud"
+                android:drawablePadding = "@dimen/padding_normal"
+                android:text="Exit"/>
+
+
+        </LinearLayout>
+
 
     </android.support.v4.widget.DrawerLayout>
 </FrameLayout>

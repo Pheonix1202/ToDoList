@@ -1,21 +1,14 @@
-package zakhargoryainov.todolist.authentication;
+package zakhargoryainov.todolist.authentication.presentation;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-
-import com.arellomobile.mvp.MvpActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import zakhargoryainov.todolist.MvpAppCompatActivity;
+import zakhargoryainov.todolist.authentication.presentation.adapter.AuthPagerAdapter;
+import zakhargoryainov.todolist.base.MvpAppCompatActivity;
 import zakhargoryainov.todolist.R;
-import zakhargoryainov.todolist.app.ToDoApplication;
-import zakhargoryainov.todolist.authentication.login.LoginFragment;
-import zakhargoryainov.todolist.authentication.login.LoginFragment$$PresentersBinder;
-import zakhargoryainov.todolist.todo.authentication.AuthPagerAdapter;
 
 /**
  * Created by Захар on 04.08.2017.
@@ -23,7 +16,6 @@ import zakhargoryainov.todolist.todo.authentication.AuthPagerAdapter;
 
 public class AuthActivity extends MvpAppCompatActivity {
 
-    //todo заблокировать экран от повротов
     @BindView(R.id.view_pager_auth)
     ViewPager authViewPager;
 
