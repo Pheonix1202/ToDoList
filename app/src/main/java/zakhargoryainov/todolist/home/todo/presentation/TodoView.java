@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.home.todo;
+package zakhargoryainov.todolist.home.todo;
 
 /**
  * Created by Захар on 02.08.2017.

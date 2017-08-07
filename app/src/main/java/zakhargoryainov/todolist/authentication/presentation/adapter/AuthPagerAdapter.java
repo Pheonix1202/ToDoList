@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import zakhargoryainov.todolist.todo.authentication.login.LoginFragment;
-import zakhargoryainov.todolist.todo.authentication.registration.RegistrationFragment;
-import zakhargoryainov.todolist.todo.home.done.DoneFragment;
-import zakhargoryainov.todolist.todo.home.todo.TodoFragment;
+import zakhargoryainov.todolist.authentication.login.LoginFragment;
+import zakhargoryainov.todolist.authentication.registration.RegistrationFragment;
+import zakhargoryainov.todolist.home.done.DoneFragment;
+import zakhargoryainov.todolist.home.todo.TodoFragment;
 
 /**
  * Created by Захар on 04.08.2017.

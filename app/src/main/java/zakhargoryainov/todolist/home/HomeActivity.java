@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.home;
+package zakhargoryainov.todolist.home;
 
 import com.arellomobile.mvp.MvpFragment;
 
