@@ -8,6 +8,36 @@ import java.util.Date;
 
 public class TodoNotationCollapsed {
     private String title;
-    private Date date;
+    private String date;
     private int priority;
+
+    public TodoNotationCollapsed(String title, String date, int priority) {
+        this.title = title;
+        this.date = date;
+        this.priority = priority;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 }

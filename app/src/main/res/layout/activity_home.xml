@@ -29,9 +29,10 @@
                 android:layout_height="48dip"
                 android:background="@color/black_transparent_normal"
                 android:fontFamily="casual"
-                android:textSize="@dimen/text_size_common"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
                 android:textStyle="normal"
-                android:titleTextColor="@android:color/white"
+
                 app:pstsIndicatorColor="@android:color/white"
                 app:pstsIndicatorHeight="@dimen/stroke_width_common"
                 app:pstsShouldExpand="true" />
@@ -79,13 +80,13 @@
                 <TextView
                     android:id="@+id/text_view_email"
                     style="@style/text_field"
-                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/text_view_name_first_last"
                     android:layout_below="@+id/text_view_name_first_last"
                     android:layout_marginTop="8dp"
-                    android:text="Sollex1202@gmail.com" />
+                    android:text="Sollex1202@gmail.com"
+                    android:textSize="12sp" />
 
 
             </RelativeLayout>
@@ -98,31 +99,31 @@
                 android:background="@color/white" />
 
             <TextView
+                style="@style/text_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/text_field"
-                android:paddingTop="@dimen/padding_normal"
                 android:drawableLeft="@drawable/ic_cloud"
-                android:drawablePadding = "@dimen/padding_normal"
-                android:text="Profile"/>
+                android:drawablePadding="@dimen/padding_normal"
+                android:paddingTop="@dimen/padding_normal"
+                android:text="Profile" />
 
             <TextView
+                style="@style/text_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/text_field"
-                android:paddingTop="@dimen/padding_normal"
                 android:drawableLeft="@drawable/ic_cloud"
-                android:drawablePadding = "@dimen/padding_normal"
-                android:text="Settings"/>
+                android:drawablePadding="@dimen/padding_normal"
+                android:paddingTop="@dimen/padding_normal"
+                android:text="Settings" />
 
             <TextView
+                style="@style/text_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/text_field"
-                android:paddingTop="@dimen/padding_normal"
                 android:drawableLeft="@drawable/ic_cloud"
-                android:drawablePadding = "@dimen/padding_normal"
-                android:text="Exit"/>
+                android:drawablePadding="@dimen/padding_normal"
+                android:paddingTop="@dimen/padding_normal"
+                android:text="Sign out" />
 
 
         </LinearLayout>

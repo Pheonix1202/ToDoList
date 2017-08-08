@@ -1,5 +1,6 @@
 package zakhargoryainov.todolist.home;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -7,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -49,6 +52,13 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView {
         pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         tabs.setViewPager(viewPager);
+        Typeface typeface = Typeface.create("casual",Typeface.BOLD_ITALIC);
+        tabs.setTypeface(typeface,Typeface.BOLD_ITALIC);
+
+        for (int i = 0; i < toolbar.getChildCount(); i++){
+            if (toolbar.getChildAt(i) instanceof TextView)
+                ((TextView) toolbar.getChildAt(i)).setTypeface(Typeface.create("casual",Typeface.BOLD_ITALIC));
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package zakhargoryainov.todolist.home;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,11 +10,13 @@ import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private String tabTitles[] = new String[] { "To do", "Completed" };
+    private Context context;
+    private String tabTitles[] = new String[] { "To do", "Completed"};
 
-    public TabsPagerAdapter(FragmentManager fm) {
+    public TabsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
     }
+
 
     @Override
     public Fragment getItem(int index) {
@@ -38,8 +41,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        // Generate title based on item position
-
         return tabTitles[position];
     }
 

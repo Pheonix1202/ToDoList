@@ -6,7 +6,8 @@
     android:background="@drawable/shape_recycler_view_item"
     android:orientation="vertical"
     android:paddingLeft="@dimen/padding_normal"
-    android:paddingRight="@dimen/paddingRight_indicator">
+    android:paddingRight="@dimen/paddingRight_indicator"
+    android:layout_marginTop="@dimen/padding_normal">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -36,8 +37,7 @@
         android:layout_width="@dimen/padding_normal"
         android:layout_height="@dimen/padding_normal"
         android:layout_gravity="center_vertical|right"
-        android:background="@color/red_500"
-        app:riv_border_width="0dp"
+        app:riv_mutate_background="true"
         app:riv_oval="true" />
 
 

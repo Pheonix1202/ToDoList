@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.todo.authentication;
+package zakhargoryainov.todolist.authentication;
 
 import javax.inject.Inject;
 

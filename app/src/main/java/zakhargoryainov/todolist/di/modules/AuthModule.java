@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import zakhargoryainov.todolist.authentication.AuthService;
-import zakhargoryainov.todolist.todo.authentication.AuthInteractor;
+import zakhargoryainov.todolist.authentication.AuthInteractor;
 
 /**
  * Created by Захар on 03.08.2017.

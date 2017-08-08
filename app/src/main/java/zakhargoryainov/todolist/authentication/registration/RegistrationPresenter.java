@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.ToDoApplication;
-import zakhargoryainov.todolist.todo.authentication.AuthInteractor;
+import zakhargoryainov.todolist.authentication.AuthInteractor;
 
 /**
  * Created by Захар on 04.08.2017.
