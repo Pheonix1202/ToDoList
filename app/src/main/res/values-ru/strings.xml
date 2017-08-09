@@ -3,6 +3,5 @@
     <string name="app_name">To Do List</string>
     <string name="button_change_avatar">Изменить аватар</string>
     <string name="button_exit">Выйти из профиля</string>
-    <string name="tab_title_done">Выполнено</string>
-    <string name="tab_title_todo">Выполнить</string>
+
 </resources>

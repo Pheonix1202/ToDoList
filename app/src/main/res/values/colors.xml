@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#a2909000</color>
+    <color name="colorAccent">#00d89b</color>
     
     <color name="black_transparent_normal">#B2000000</color>
     <color name="black_transparent_light">#A2000000</color>
+    <color name="black_transparent_dark">#C2000000</color>
     <color name="button_sign_in">#a2909000</color>
     <color name="light_gray">#ccc</color>
     <color name="slide_arrow">#fff</color>

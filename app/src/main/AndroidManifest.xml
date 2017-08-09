@@ -3,7 +3,7 @@
     package="zakhargoryainov.todolist">
 
     <application
-        android:name=".app.ToDoApplication"
+        android:name=".app.TodoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +17,7 @@
             android:name=".authentication.presentation.AuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".home.todo.presentation.TodoNotationEditActivity"/>
         <activity
             android:name=".home.HomeActivity"
             android:screenOrientation="portrait">

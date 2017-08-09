@@ -5,39 +5,34 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import zakhargoryainov.todolist.home.done.DoneFragment;
+import zakhargoryainov.todolist.R;
+import zakhargoryainov.todolist.home.done.presentation.DoneFragment;
 import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private Context context;
-    private String tabTitles[] = new String[] { "To do", "Completed"};
+    private String tabTitles[];
 
     public TabsPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        tabTitles = new String[] {
+                context.getString(R.string.tab_title_todo),
+                context.getString(R.string.tab_title_done)};
     }
-
 
     @Override
     public Fragment getItem(int index) {
         switch (index) {
-            case 0:
-                // Top Rated fragment activity
-                return new TodoFragment();
-            case 1:
-                // Games fragment activity
-                return new DoneFragment();
+            case 0: return new TodoFragment();
+            case 1: return new DoneFragment();
+            default: return null;
         }
-
-        return null;
     }
 
     @Override
     public int getCount() {
-        // get item count - equal to number of tabs
         return 2;
     }
-
 
     @Override
     public CharSequence getPageTitle(int position) {

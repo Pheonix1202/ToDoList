@@ -14,7 +14,7 @@ import zakhargoryainov.todolist.di.modules.ContextModule;
  * Created by Захар on 03.08.2017.
  */
 
-public class ToDoApplication extends Application {
+public class TodoApplication extends Application {
 
     private static AppComponent appComponent;
 

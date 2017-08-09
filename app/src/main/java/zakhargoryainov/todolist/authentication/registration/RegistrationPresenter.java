@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import zakhargoryainov.todolist.app.ToDoApplication;
+import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.authentication.AuthInteractor;
 
 /**
@@ -23,7 +23,7 @@ public class RegistrationPresenter extends MvpPresenter<RegistrationView> {
     AuthInteractor interactor;
 
     public RegistrationPresenter() {
-        ToDoApplication.getAppComponent().inject(this);
+        TodoApplication.getAppComponent().inject(this);
     }
 
     public void SignUp(String email, String password, String confirmPassword) {

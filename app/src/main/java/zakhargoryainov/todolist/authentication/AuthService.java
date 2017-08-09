@@ -14,12 +14,12 @@ public class AuthService {
 
     private final FirebaseAuth auth;
 
-    private final Context context; //todo remove if there is not custom error handling
+    //private final Context context; //todo remove if there is not custom error handling
 
     @Inject
     public AuthService(FirebaseAuth auth, Context context) {
         this.auth = auth;
-        this.context = context;
+        //this.context = context;
     }
 
     public Completable signIn(String email, String password) {
