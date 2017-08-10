@@ -64,7 +64,7 @@ public class TodoNotationEditDialogFragment extends MvpDialogFragment implements
 
     @Override
     public void showSmth() {
-        Toast.makeText(getContext(),"AAAAAAARGS",Toast.LENGTH_LONG);
+        Toast.makeText(getContext(),"AAAAAAARGS",Toast.LENGTH_LONG).show();
     }
 
     @Nullable
@@ -92,6 +92,5 @@ public class TodoNotationEditDialogFragment extends MvpDialogFragment implements
     public void dismiss() {
         listener.onDismiss();
         super.dismiss();
-
     }
 }

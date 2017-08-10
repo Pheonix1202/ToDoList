@@ -17,7 +17,6 @@ import zakhargoryainov.todolist.home.todo.presentation.TodoPresenter;
 public class ContextModule {
 
     private Context context;
-    private TodoPresenter presenter;
 
     public ContextModule(Context context) {
         this.context = context;

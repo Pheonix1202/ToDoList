@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home;
+package zakhargoryainov.todolist.home.presentation;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,18 +9,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 import zakhargoryainov.todolist.base.MvpAppCompatActivity;
 import zakhargoryainov.todolist.R;
+import zakhargoryainov.todolist.home.TabsPagerAdapter;
 
 /**
  * Created by Захар on 02.08.2017.
  */
 
-public class HomeActivity extends MvpAppCompatActivity {
+public class HomeActivity extends MvpAppCompatActivity implements HomeView{
 
     private ActionBarDrawerToggle toggle;
     private FloatingActionButton fab;
@@ -34,7 +36,12 @@ public class HomeActivity extends MvpAppCompatActivity {
         initNavigationDrawer();
         initViewPager(typeface);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override
@@ -89,6 +96,18 @@ public class HomeActivity extends MvpAppCompatActivity {
 
             }
         });
+    }
+
+
+
+    @Override
+    public void onAdditionSuccess() {
+
+    }
+
+    @Override
+    public void onAdditionFailire() {
+
     }
 }
 

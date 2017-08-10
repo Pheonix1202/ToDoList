@@ -1,4 +1,3 @@
-
 package zakhargoryainov.todolist.authentication.login;
 
 import android.content.Intent;
@@ -10,28 +9,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import zakhargoryainov.todolist.MainActivity;
-import zakhargoryainov.todolist.authentication.presentation.AuthActivity;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.R;
-import zakhargoryainov.todolist.home.HomeActivity;
+import zakhargoryainov.todolist.home.presentation.HomeActivity;
 
-/**
- * Created by Захар on 01.08.2017.
- */
-
+//todo check why mvpFragment doesn't work correctly unlike mvpActivity
 public class LoginFragment extends MvpAppCompatFragment implements LoginView {
 
     @InjectPresenter
@@ -47,13 +38,6 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     DotProgressBar dotProgressBar;
 
     private Unbinder unbinder;
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_login);
-//        unbinder = ButterKnife.bind(this);
-//    }
 
     @Nullable
     @Override
@@ -95,7 +79,6 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     public void showError(String message) {
         Toast.makeText(getContext() ,message, Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void showProgress() {

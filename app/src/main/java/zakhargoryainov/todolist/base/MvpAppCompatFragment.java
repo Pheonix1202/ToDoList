@@ -2,7 +2,6 @@ package zakhargoryainov.todolist.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
 import com.arellomobile.mvp.MvpDelegate;
 
 public class MvpAppCompatFragment extends Fragment {
@@ -51,7 +50,6 @@ public class MvpAppCompatFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         //We leave the screen and respectively all fragments will be destroyed
         if (getActivity().isFinishing()) {
             getMvpDelegate().onDestroy();

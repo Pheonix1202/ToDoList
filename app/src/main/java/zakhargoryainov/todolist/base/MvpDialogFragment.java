@@ -4,12 +4,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-
 import com.arellomobile.mvp.MvpDelegate;
 
-/**
- * Created by Захар on 09.08.2017.
- */
+
 public class MvpDialogFragment extends DialogFragment {
 
     private boolean mIsStateSaved;
@@ -17,23 +14,18 @@ public class MvpDialogFragment extends DialogFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getMvpDelegate().onCreate(savedInstanceState);
     }
 
     public void onResume() {
         super.onResume();
-
         mIsStateSaved = false;
-
         getMvpDelegate().onAttach();
     }
 
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         mIsStateSaved = true;
-
         getMvpDelegate().onSaveInstanceState(outState);
         getMvpDelegate().onDetach();
     }
@@ -93,7 +85,6 @@ public class MvpDialogFragment extends DialogFragment {
         if (mMvpDelegate == null) {
             mMvpDelegate = new MvpDelegate<>(this);
         }
-
         return mMvpDelegate;
     }
 }

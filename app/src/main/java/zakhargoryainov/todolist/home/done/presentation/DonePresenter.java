@@ -1,8 +1,12 @@
 package zakhargoryainov.todolist.home.done.presentation;
 
-/**
- * Created by Захар on 02.08.2017.
- */
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
+import javax.inject.Inject;
 
-public class DonePresenter {
+
+@InjectViewState
+public class DonePresenter extends MvpPresenter<DoneView> {
+
+    public DonePresenter() {}
 }

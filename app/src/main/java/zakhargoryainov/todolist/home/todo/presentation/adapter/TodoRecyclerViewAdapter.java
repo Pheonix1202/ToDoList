@@ -15,11 +15,8 @@ import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
-/**
- * Created by Захар on 07.08.2017.
- */
 
-public class    TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<TodoNotation> items;
     private OnNotationClickListener listener;
@@ -35,14 +32,20 @@ public class    TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        if (viewType == 1) {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recycler_view_item_todo, parent, false);
-            return new TodoViewHolder(view);
+        switch (viewType) {
+            case 0:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.recycler_view_item_empty, parent, false);
+                return new TodoRecyclerViewAdapter.EmptyViewHolder(view);
+
+            case 1:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.recycler_view_item_todo, parent, false);
+                return new TodoRecyclerViewAdapter.TodoViewHolder(view);
+
+            default:
+                return null;
         }
-        view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_item_empty, parent, false);
-        return new EmptyViewHolder(view);
     }
 
     @Override
@@ -112,7 +115,6 @@ public class    TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
         @BindView(R.id.image_view_indicator)
         ImageView indicatorImageView;
-
 
         public TodoViewHolder(View itemView) {
             super(itemView);

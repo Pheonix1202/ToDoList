@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--
     <string name="app_name">To Do List</string>
     <string name="button_change_avatar">Изменить аватар</string>
     <string name="button_exit">Выйти из профиля</string>
-
+    <string name="on_success_sign_up">Вы успешно зарегистрировались</string> -->
+    <!-- todo check fonts which support ru -->
 </resources>

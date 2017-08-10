@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +32,11 @@ import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickL
  * Created by Захар on 02.08.2017.
  */
 
-public class TodoFragment extends MvpAppCompatFragment implements OnNotationClickListener, OnDismissListener {
+
+public class TodoFragment extends MvpAppCompatFragment implements OnNotationClickListener, OnDismissListener, TodoView {
 
     RecyclerView todoRecyclerView;
-    @Inject TodoPresenter presenter;
+    @InjectPresenter TodoPresenter presenter;
     TodoRecyclerViewAdapter adapter;
     DialogFragment dialogFragment;
     private Unbinder unbinder;
@@ -43,8 +46,7 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todo,container,false);
         unbinder = ButterKnife.bind(getActivity());
-
-        TodoApplication.getAppComponent().inject(this);
+        //TodoApplication.getAppComponent().inject(this);
         return view;
     }
 
@@ -57,7 +59,6 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
         adapter = new TodoRecyclerViewAdapter(this,getContext());
         todoRecyclerView.setAdapter(adapter);
         adapter.setItems(getTodoNotations());
-
     }
 
     @Override

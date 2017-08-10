@@ -1,12 +1,23 @@
 <resources>
+    <!--Base-->
     <string name="app_name"> To Do List</string>
+    <!--Home-->
     <string name="tab_title_done">COMPLETED</string>
     <string name="tab_title_todo">TO DO</string>
+
+    <!--Navigation Menu-->
+    <string name="button_exit">Sign out</string>
+    <string name="button_change_avatar">Change avatar</string>
+
+    <!--Authentication-->
     <string name="hint_login">E-mail</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm password</string>
-    <string name="button_sign_in">Sign in</string>
-    <string name="button_sign_up">Sign up</string>
-    <string name="button_exit">Sign out</string>
-    <string name="button_change_avatar">Change avatar</string>
+        <!--Login-->
+        <string name="button_sign_in">Sign in</string>
+        <!--Registration-->
+        <string name="button_sign_up">Sign up</string>
+        <string name="on_success_sign_up">You successfully signed up</string>
+        <string name="passwords_do_not_match">Passwords don\'t match</string>
+
 </resources>

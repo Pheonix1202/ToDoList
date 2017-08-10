@@ -1,6 +1,5 @@
 package zakhargoryainov.todolist.di.modules;
 
-import android.content.Context;
 import com.google.firebase.auth.FirebaseAuth;
 import javax.inject.Singleton;
 import dagger.Module;
@@ -8,13 +7,13 @@ import dagger.Provides;
 import zakhargoryainov.todolist.authentication.AuthService;
 import zakhargoryainov.todolist.authentication.AuthInteractor;
 
-@Module(includes = {ContextModule.class})
+@Module
 public class AuthModule {
 
     @Provides
     @Singleton
-    public AuthService provideAuthService(Context context){
-        return  new AuthService(FirebaseAuth.getInstance(), context);
+    public AuthService provideAuthService(){
+        return  new AuthService(FirebaseAuth.getInstance());
     }
 
     @Provides

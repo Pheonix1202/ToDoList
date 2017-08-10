@@ -2,6 +2,7 @@ package zakhargoryainov.todolist.authentication.registration;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.github.silvestrpredko.dotprogressbar.DotProgressBar;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -23,9 +21,6 @@ import butterknife.Unbinder;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.R;
 
-/**
- * Created by Захар on 04.08.2017.
- */
 
 public class RegistrationFragment extends MvpAppCompatFragment implements RegistrationView {
 
@@ -58,10 +53,9 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unbinder.unbind();
+        super.onDestroy();
     }
-
 
     @OnClick(R.id.button_sign_up)
     public void onClick() { //todo surround fields with format exceptions?
@@ -69,16 +63,18 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
                 editTexts.get(0).getText().toString(),
                 editTexts.get(1).getText().toString(),
                 editTexts.get(2).getText().toString());
-
     }
-
 
     @Override
     public void onSuccessSignUp() {
         Toast.makeText(getContext(), "Вы успешно зарегистрировались", Toast.LENGTH_LONG).show();
         ViewPager pager = (ViewPager) getActivity().findViewById(R.id.view_pager_auth);
         pager.setCurrentItem(0);
+    }
 
+    @Override
+    public void showError(@StringRes int message) {
+        Toast.makeText(getContext(), getResources().getString(message), Toast.LENGTH_SHORT).show();
     }
 
     @Override

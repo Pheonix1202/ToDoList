@@ -1,24 +1,23 @@
 package zakhargoryainov.todolist.home.todo.presentation;
 
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
 import javax.inject.Inject;
 
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.todo.TodoDialogInteractor;
-import zakhargoryainov.todolist.home.todo.presentation.adapter.TodoRecyclerViewAdapter;
 
-/**
- * Created by Захар on 02.08.2017.
- */
 
-public class TodoPresenter {
-
-    private TodoDialogInteractor interactor;
+@InjectViewState
+public class TodoPresenter extends MvpPresenter<TodoView> {
 
     @Inject
-    public TodoPresenter(TodoDialogInteractor interactor) {
-        //TodoApplication.getAppComponent().inject(this);
-        this.interactor = interactor;
+    TodoDialogInteractor interactor;
+
+
+    public TodoPresenter() {
+        TodoApplication.getAppComponent().inject(this);
     }
 
     public void sendNotationInDialog(TodoNotation notation){

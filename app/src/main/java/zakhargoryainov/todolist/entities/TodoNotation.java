@@ -5,11 +5,11 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import com.google.firebase.database.Exclude;
+import lombok.Data;
 
 
 @Entity(foreignKeys = @ForeignKey(entity = TodoUser.class,childColumns = "nickname",parentColumns = "nickname"))
-public class TodoNotation {
-
+public @Data class TodoNotation {
 
     @Exclude
     @Ignore
@@ -27,50 +27,9 @@ public class TodoNotation {
     private String date;
     private boolean isDone;
 
-
     public TodoNotation(String title,  String date, int priority) {
         this.title = title;
         this.priority = priority;
         this.date = date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
     }
 }
