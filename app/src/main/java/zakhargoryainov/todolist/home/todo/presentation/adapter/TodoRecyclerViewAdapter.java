@@ -7,23 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.todo.TodoNotationCollapsed;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
 /**
  * Created by Захар on 07.08.2017.
  */
 
-public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class    TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<TodoNotation> items;
     private OnNotationClickListener listener;

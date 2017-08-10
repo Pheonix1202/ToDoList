@@ -16,7 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.todo.TodoNotationCollapsed;
 
 /**
  * Created by Захар on 07.08.2017.
@@ -24,7 +23,7 @@ import zakhargoryainov.todolist.home.todo.TodoNotationCollapsed;
 
 public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private List<TodoNotationCollapsed> items;
+    private List<TodoNotation> items;
 
     @Inject
     Context context;
@@ -56,7 +55,7 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         TodoViewHolder holder;
         if (someHolder instanceof TodoViewHolder) {
             holder = (TodoViewHolder) someHolder;
-            TodoNotationCollapsed notation = items.get(position);
+            TodoNotation notation = items.get(position);
             holder.dateTextView.setText(notation.getDate());
             holder.titleTextView.setText(notation.getTitle());
             switch (notation.getPriority()) {
@@ -82,13 +81,13 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
 
-    public void setItems(List<TodoNotationCollapsed> items) {
+    public void setItems(List<TodoNotation> items) {
         this.items = items;
         items.add(null);
         notifyDataSetChanged();
     }
 
-    public void addItem(TodoNotationCollapsed item){
+    public void addItem(TodoNotation item){
         items.remove(items.size()-1);
         items.add(item);
         items.add(null);

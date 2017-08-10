@@ -1,10 +1,10 @@
 package zakhargoryainov.todolist.home.todo.presentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,21 +21,21 @@ import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.todo.TodoNotationCollapsed;
 import zakhargoryainov.todolist.home.todo.presentation.adapter.TodoRecyclerViewAdapter;
+import zakhargoryainov.todolist.home.todo.presentation.dialog.TodoNotationEditDialogFragment;
+import zakhargoryainov.todolist.home.todo.presentation.listener.OnDismissListener;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
 /**
  * Created by Захар on 02.08.2017.
  */
 
-public class TodoFragment extends MvpAppCompatFragment implements OnNotationClickListener {
+public class TodoFragment extends MvpAppCompatFragment implements OnNotationClickListener, OnDismissListener {
 
     RecyclerView todoRecyclerView;
     @Inject TodoPresenter presenter;
     TodoRecyclerViewAdapter adapter;
     DialogFragment dialogFragment;
-
     private Unbinder unbinder;
 
     @Nullable
@@ -48,23 +48,21 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
         return view;
     }
 
-
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         todoRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_todo);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         todoRecyclerView.setLayoutManager(llm);
         adapter = new TodoRecyclerViewAdapter(this,getContext());
         todoRecyclerView.setAdapter(adapter);
         adapter.setItems(getTodoNotations());
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -74,9 +72,9 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
     }
     @Override
     public void onNotationClick(TodoNotation notation) {
-        presenter.setCurrentNotation(notation);
-//        Intent intent = new Intent(getActivity(), TodoNotationEditActivity.class);
-//        startActivity(intent);
+        presenter.sendNotationInDialog(notation);
+        dialogFragment = TodoNotationEditDialogFragment.newInstance(this);
+        dialogFragment.show(getActivity().getSupportFragmentManager(),"cancer_pes");
     }
 
 
@@ -96,4 +94,8 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
         return notations;
     }
 
+    @Override
+    public void onDismiss() {
+        adapter.notifyDataSetChanged();
+    }
 }

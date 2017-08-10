@@ -6,10 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
+import zakhargoryainov.todolist.home.todo.TodoDialogInteractor;
 import zakhargoryainov.todolist.home.todo.presentation.TodoPresenter;
-import zakhargoryainov.todolist.home.todo.presentation.adapter.TodoRecyclerViewAdapter;
-import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
 /**
  * Created by Захар on 03.08.2017.
@@ -31,11 +29,8 @@ public class ContextModule {
         return context;
     }
 
-    @Provides
-    @Singleton
-    public TodoPresenter todoPresenter(){
-        return new TodoPresenter();
-    }
+
+
 
 //    @Provides
 //    @Singleton

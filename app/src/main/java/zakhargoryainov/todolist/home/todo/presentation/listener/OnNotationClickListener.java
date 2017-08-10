@@ -7,6 +7,5 @@ import zakhargoryainov.todolist.entities.TodoNotation;
  */
 
 public interface OnNotationClickListener {
-
     void onNotationClick(TodoNotation notation);
 }

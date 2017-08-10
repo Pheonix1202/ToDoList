@@ -17,7 +17,6 @@
             android:name=".authentication.presentation.AuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".home.todo.presentation.TodoNotationEditActivity"/>
         <activity
             android:name=".home.HomeActivity"
             android:screenOrientation="portrait">

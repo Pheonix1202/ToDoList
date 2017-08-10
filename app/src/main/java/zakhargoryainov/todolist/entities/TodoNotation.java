@@ -4,12 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-
 import com.google.firebase.database.Exclude;
 
-/**
- * Created by Захар on 09.08.2017.
- */
 
 @Entity(foreignKeys = @ForeignKey(entity = TodoUser.class,childColumns = "nickname",parentColumns = "nickname"))
 public class TodoNotation {
