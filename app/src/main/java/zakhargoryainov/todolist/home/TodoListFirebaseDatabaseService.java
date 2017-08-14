@@ -6,11 +6,11 @@ import io.reactivex.Completable;
 import zakhargoryainov.todolist.entities.TodoNotation;
 
 
-public class TodoListFirebaseService {
+public class TodoListFirebaseDatabaseService {
 
     private final FirebaseDatabase database;
 
-    public TodoListFirebaseService(FirebaseDatabase database) {
+    public TodoListFirebaseDatabaseService(FirebaseDatabase database) {
         this.database = database;
     }
 

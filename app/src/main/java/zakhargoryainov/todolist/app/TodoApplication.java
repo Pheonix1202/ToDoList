@@ -3,7 +3,7 @@ package zakhargoryainov.todolist.app;
 import android.app.Application;
 import zakhargoryainov.todolist.di.AppComponent;
 import zakhargoryainov.todolist.di.DaggerAppComponent;
-import zakhargoryainov.todolist.di.modules.AuthModule;
+import zakhargoryainov.todolist.di.modules.FirebaseModule;
 import zakhargoryainov.todolist.di.modules.ContextModule;
 
 
@@ -17,7 +17,7 @@ public class TodoApplication extends Application {
         super.onCreate();
 
         appComponent = DaggerAppComponent.builder()
-                .authModule(new AuthModule())
+                .firebaseModule(new FirebaseModule())
                 .contextModule(new ContextModule(this))
                 .build();
     }

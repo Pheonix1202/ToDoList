@@ -7,7 +7,6 @@ import android.arch.persistence.room.PrimaryKey;
 import com.google.firebase.database.Exclude;
 import lombok.Data;
 
-
 @Entity(foreignKeys = @ForeignKey(entity = TodoUser.class,childColumns = "nickname",parentColumns = "nickname"))
 public @Data class TodoNotation {
 
@@ -27,9 +26,12 @@ public @Data class TodoNotation {
     private String date;
     private boolean isDone;
 
+    @Ignore
     public TodoNotation(String title,  String date, int priority) {
         this.title = title;
         this.priority = priority;
         this.date = date;
     }
+
+    public TodoNotation(){}
 }

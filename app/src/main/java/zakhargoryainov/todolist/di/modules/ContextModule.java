@@ -6,8 +6,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import zakhargoryainov.todolist.home.todo.TodoDialogInteractor;
-import zakhargoryainov.todolist.home.todo.presentation.TodoPresenter;
 
 /**
  * Created by Захар on 03.08.2017.

@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home.todo.presentation.dialog;
+package zakhargoryainov.todolist.home.todo.presentation.dialog.create;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -12,7 +12,7 @@ import zakhargoryainov.todolist.entities.TodoNotation;
  */
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface TodoNotationEditView extends MvpView{
+public interface TodoCreateView extends MvpView{
     void extractData(TodoNotation notation);
-    void showSmth();
+    void onSuccess();
 }

@@ -78,6 +78,10 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         return items == null ? 0 : items.size();
     }
 
+    public List<TodoNotation> getItems(){
+        return items;
+    }
+
     public void setItems(List<TodoNotation> items) {
         this.items = items;
         items.add(null);

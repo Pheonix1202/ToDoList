@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_transparent_dark"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_small">
+
+    <TextView
+        style="@style/text_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Create your To Do Note"
+        android:textSize="26sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <TextView
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-16dp"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:text="Enter your title" />
+
+            <EditText
+                android:id="@+id/edit_text_title"
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:background="@drawable/shape_edit_text_dialog"
+                android:hint="title"
+                android:padding="@dimen/padding_small"
+                android:textSize="22sp" />
+
+            <TextView
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-16dp"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:paddingTop="@dimen/padding_small"
+                android:text="Description" />
+
+            <EditText
+                android:id="@+id/edit_text_body"
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:height="100dp"
+                android:background="@drawable/shape_edit_text_dialog"
+                android:gravity="bottom"
+                android:hint="..."
+                android:padding="@dimen/padding_small"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:paddingTop="@dimen/padding_small"
+                android:text="Priority" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <!--todo завернуть textview в frame layout-->
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view_priority_tier_1"
+                        style="@style/view_priority"
+                        android:layout_width="@dimen/view_priority_size"
+                        android:layout_height="@dimen/view_priority_size" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view_priority_tier_2"
+                        style="@style/view_priority"
+                        android:layout_width="@dimen/view_priority_size"
+                        android:layout_height="@dimen/view_priority_size" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view_priority_tier_3"
+                        style="@style/view_priority"
+                        android:layout_width="@dimen/view_priority_size"
+                        android:layout_height="@dimen/view_priority_size" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view_priority_tier_4"
+                        style="@style/view_priority"
+                        android:layout_width="@dimen/view_priority_size"
+                        android:layout_height="@dimen/view_priority_size" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/edit_text_date"
+                style="@style/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_normal"
+                android:text="Set deadline"
+                android:textSize="22sp" />
+
+            <DatePicker
+                android:id="@+id/date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:headerBackground="@android:color/transparent" />
+
+            <TimePicker
+                android:id="@+id/time_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:headerBackground="@drawable/shape_button_sign_in"
+                android:numbersBackgroundColor="#91ff00"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:timePickerMode="spinner" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_large"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_confirm"
+                    style="@style/text_field"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="@dimen/button_margin_top"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button_confirm"
+                    android:text="Confirm"
+                    android:textColor="#000" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

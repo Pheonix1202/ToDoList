@@ -12,7 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.astuetz.PagerSlidingTabStrip;
+
+import javax.inject.Inject;
 
 import zakhargoryainov.todolist.base.MvpAppCompatActivity;
 import zakhargoryainov.todolist.R;
@@ -26,22 +29,17 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView{
 
     private ActionBarDrawerToggle toggle;
     private FloatingActionButton fab;
+    @InjectPresenter HomePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Typeface typeface = Typeface.create("casual",Typeface.BOLD_ITALIC);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         initActionBar(typeface);
         initNavigationDrawer();
         initViewPager(typeface);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -88,7 +86,7 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView{
             @Override
             public void onPageSelected(int position) {
                 fab.setRotation(position*225);
-
+                fab.setOnClickListener(pagerAdapter.getFabListener(position));
             }
 
             @Override
@@ -96,6 +94,7 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView{
 
             }
         });
+
     }
 
 

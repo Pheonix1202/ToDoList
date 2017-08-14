@@ -1,14 +1,17 @@
 package zakhargoryainov.todolist.di.modules;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import zakhargoryainov.todolist.authentication.AuthService;
 import zakhargoryainov.todolist.authentication.AuthInteractor;
+import zakhargoryainov.todolist.home.TodoListFirebaseDatabaseService;
 
 @Module
-public class AuthModule {
+public class FirebaseModule {
 
     @Provides
     @Singleton
@@ -20,5 +23,11 @@ public class AuthModule {
     @Singleton
     public AuthInteractor provideAuthInteractor(AuthService authService){
         return new AuthInteractor(authService);
+    }
+
+    @Provides
+    @Singleton
+    public TodoListFirebaseDatabaseService provideFirebaseDatabaseService(){
+        return new TodoListFirebaseDatabaseService(FirebaseDatabase.getInstance());
     }
 }

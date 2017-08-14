@@ -21,12 +21,19 @@
     <style name="edit_text" parent="text_field_inside_container">
         <item name="android:layout_marginBottom">@dimen/padding_normal</item>
         <item name="android:paddingLeft">@dimen/padding_left_inside_edit_text</item>
-        <item name="android:background">@drawable/shape_edit_text</item>
+        <item name="android:background">@drawable/shape_edit_text_auth</item>
     </style>
 
     <style name="auth_button_style" parent="text_field_inside_container">
         <item name="android:layout_marginTop">@dimen/button_margin_top</item>
-        <item name="android:background">@drawable/button_shape_sign_in</item>
+        <item name="android:background">@drawable/shape_button_sign_in</item>
+    </style>
+
+    <style name="view_priority">
+        <item name="android:textSize">@dimen/view_priority_text_size</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>

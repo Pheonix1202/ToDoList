@@ -62,16 +62,20 @@ dependencies {
     compile 'android.arch.persistence.room:runtime:1.0.0-alpha5'
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha5'
     compile "android.arch.persistence.room:rxjava2:1.0.0-alpha5"
+//    apt "android.arch.persistence.room:compiler:1.0.0-alpha5"
     //DotProgressBar
     compile 'com.github.silvestrpredko:dot-progress-bar:1.1'
     //RoundedImageView
     compile 'com.makeramen:roundedimageview:2.3.0'
     //FAB
     compile 'com.android.support:design:25.3.1'
+    //Blur
+    compile 'jp.wasabeef:blurry:2.1.1'
 
 }
 
 apply plugin: 'com.google.gms.google-services'
+
 
 
 //    compile 'com.android.support:design:25.3.1'

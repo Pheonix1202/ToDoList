@@ -3,6 +3,7 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_large">32dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <!--Base-->
@@ -22,4 +23,7 @@
     <dimen name="paddingRight_indicator">20dp</dimen>
     <!--NavigationDrawer-->
     <dimen name="photo_width_height">64dp</dimen>
+    <!--PriorityPicker-->
+    <dimen name="view_priority_size">58dp</dimen>
+    <dimen name="view_priority_text_size">28sp</dimen>
 </resources>

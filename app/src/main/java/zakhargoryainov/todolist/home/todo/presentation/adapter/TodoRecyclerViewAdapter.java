@@ -84,16 +84,8 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         return items == null ? 0 : items.size();
     }
 
-
     public void setItems(List<TodoNotation> items) {
         this.items = items;
-        items.add(null);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(TodoNotation item) {
-        items.remove(items.size() - 1);
-        items.add(item);
         items.add(null);
         notifyDataSetChanged();
     }
