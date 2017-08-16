@@ -13,6 +13,5 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
 public interface TodoCreateView extends MvpView{
-    void extractData(TodoNotation notation);
     void onSuccess();
 }

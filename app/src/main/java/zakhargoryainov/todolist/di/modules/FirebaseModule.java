@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import zakhargoryainov.todolist.authentication.AuthService;
 import zakhargoryainov.todolist.authentication.AuthInteractor;
-import zakhargoryainov.todolist.home.TodoListFirebaseDatabaseService;
+import zakhargoryainov.todolist.data.TodoListFirebaseDatabaseService;
 
 @Module
 public class FirebaseModule {

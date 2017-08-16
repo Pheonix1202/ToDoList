@@ -9,13 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
-
-import java.util.ArrayList;
+import com.dgreenhalgh.android.simpleitemdecoration.linear.EndOffsetItemDecoration;
 import java.util.List;
-import javax.inject.Inject;
-
 import lombok.Getter;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
@@ -26,14 +22,14 @@ import zakhargoryainov.todolist.home.done.presentation.adapter.DoneRecyclerViewA
 
 public class DoneFragment extends MvpAppCompatFragment implements DoneView {
 
-    @InjectPresenter  DonePresenter presenter;
+    @InjectPresenter DonePresenter presenter;
     private RecyclerView doneRecyclerView;
     private DoneRecyclerViewAdapter adapter;
     private @Getter FloatingActionButton.OnClickListener onFabClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_done,container,false);
+        View view = inflater.inflate(R.layout.fragment_done, container, false);
         TodoApplication.getAppComponent().inject(this);
         return view;
     }
@@ -41,22 +37,14 @@ public class DoneFragment extends MvpAppCompatFragment implements DoneView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        doneRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_done);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        doneRecyclerView.setLayoutManager(llm);
-        adapter = new DoneRecyclerViewAdapter(getContext());
-        doneRecyclerView.setAdapter(adapter);
-        onFabClickListener = v -> {
-            presenter.deleteNotation(adapter.getItems());
-            Toast.makeText(getContext(),"DONE FAB WORKS APPROPRIATELY",Toast.LENGTH_SHORT).show();
-        };
+        initRecyclerView();
+        onFabClickListener = v -> presenter.deleteNotations();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
-
 
     @Override
     public void onDataChanged(List<TodoNotation> notations) {
@@ -65,11 +53,21 @@ public class DoneFragment extends MvpAppCompatFragment implements DoneView {
 
     @Override
     public void onDataError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onSuccess() {
-        Toast.makeText(getContext(), "Hasagi", Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(), "Hasagi", Toast.LENGTH_SHORT).show();
+    }
+
+    private void initRecyclerView() {
+        doneRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_done);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        doneRecyclerView.setLayoutManager(llm);
+        adapter = new DoneRecyclerViewAdapter(getContext());
+        doneRecyclerView.setAdapter(adapter);
+        doneRecyclerView.addItemDecoration(
+                new EndOffsetItemDecoration(getResources().getDimensionPixelOffset(R.dimen.padding_normal)));
     }
 }

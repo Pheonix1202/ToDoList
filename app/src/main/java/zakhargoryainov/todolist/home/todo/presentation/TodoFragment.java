@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.dgreenhalgh.android.simpleitemdecoration.linear.EndOffsetItemDecoration;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.todo.presentation.adapter.TodoRecyclerViewAdapter;
 import zakhargoryainov.todolist.home.todo.presentation.dialog.create.TodoCreateDialogFragment;
+import zakhargoryainov.todolist.home.todo.presentation.dialog.details.TodoDetailsDialogFragment;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnSuccessDismissListener;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
@@ -42,18 +44,13 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todo, container, false);
         unbinder = ButterKnife.bind(getActivity());
-        //TodoApplication.getAppComponent().inject(this);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        todoRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_todo);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        todoRecyclerView.setLayoutManager(llm);
-        adapter = new TodoRecyclerViewAdapter(this, getContext());
-        todoRecyclerView.setAdapter(adapter);
+        initRecyclerView();
         onFabClickListener = v -> {
             presenter.prepareDialogForNewNotation();
             dialogFragment = TodoCreateDialogFragment.newInstance(getOnDismissListener());
@@ -70,7 +67,7 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
     @Override
     public void onNotationClick(TodoNotation notation) {
         presenter.sendNotationToDialog(notation);
-        dialogFragment = TodoCreateDialogFragment.newInstance(this); //details dialog
+        dialogFragment = new TodoDetailsDialogFragment();
         dialogFragment.show(getActivity().getSupportFragmentManager(),"za4em?");
     }
 
@@ -93,9 +90,18 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG);
     }
 
-
     @Override
     public void onSuccess() {
         Toast.makeText(getContext(),"DONE",Toast.LENGTH_SHORT).show();
+    }
+
+    private void initRecyclerView(){
+        todoRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_todo);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        todoRecyclerView.setLayoutManager(llm);
+        adapter = new TodoRecyclerViewAdapter(this, getContext());
+        todoRecyclerView.setAdapter(adapter);
+        todoRecyclerView.addItemDecoration(
+                new EndOffsetItemDecoration(getResources().getDimensionPixelOffset(R.dimen.padding_normal)));
     }
 }

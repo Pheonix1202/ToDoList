@@ -1,10 +1,18 @@
 package zakhargoryainov.todolist.base;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.Window;
+
 import com.arellomobile.mvp.MvpDelegate;
+
+import zakhargoryainov.todolist.R;
 
 
 public class MvpDialogFragment extends DialogFragment {
@@ -15,6 +23,21 @@ public class MvpDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getMvpDelegate().onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        DisplayMetrics metrics = new DisplayMetrics();
+        Window window = getDialog().getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int width = 0, height = 0;
+        width = metrics.widthPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
+        height = metrics.heightPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
+        getDialog().getWindow().setGravity(Gravity.CENTER);
+        getDialog().getWindow().setLayout(width, height);
     }
 
     public void onResume() {

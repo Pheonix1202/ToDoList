@@ -7,19 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.entities.TodoNotation;
+
 import static zakhargoryainov.todolist.entities.TodoNotation.*;
 
 
-public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<DoneRecyclerViewAdapter.DoneViewHolder> {
 
     private List<TodoNotation> items;
-    @Inject Context context;
+    @Inject
+    Context context;
 
 
     public DoneRecyclerViewAdapter(Context context) {
@@ -27,49 +32,32 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
-        switch (viewType) {
-            case 0: view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.recycler_view_item_empty, parent, false);
-                    return new EmptyViewHolder(view);
+    public DoneViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_view_item_done, parent, false);
+        return new DoneViewHolder(view);
 
-            case 1: view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.recycler_view_item_done, parent, false);
-                    return new DoneViewHolder(view);
-
-            default: return null;
-        }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == getItemCount()-1) return 0;
-        else return 1;
-    }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder someHolder, int position) {
-        DoneViewHolder holder;
-        if (someHolder instanceof DoneViewHolder) {
-            holder = (DoneViewHolder) someHolder;
-            TodoNotation notation = items.get(position);
-            holder.dateTextView.setText(notation.getDate());
-            holder.titleTextView.setText(notation.getTitle());
-            switch (notation.getPriority()) {
-                case TIER_1:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_1));
-                    break;
-                case TIER_2:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_2));
-                    break;
-                case TIER_3:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_3));
-                    break;
-                case TIER_4:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_4));
-                    break;
-            }
+    public void onBindViewHolder(DoneViewHolder holder, int position) {
+        TodoNotation notation = items.get(position);
+        holder.dateTextView.setText(notation.getFormattedDeadline());
+        holder.titleTextView.setText(notation.getTitle());
+        switch (notation.getPriority()) {
+            case TIER_1:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_1));
+                break;
+            case TIER_2:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_2));
+                break;
+            case TIER_3:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_3));
+                break;
+            case TIER_4:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_4));
+                break;
         }
     }
 
@@ -78,34 +66,16 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         return items == null ? 0 : items.size();
     }
 
-    public List<TodoNotation> getItems(){
-        return items;
-    }
-
     public void setItems(List<TodoNotation> items) {
         this.items = items;
-        items.add(null);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(TodoNotation item){
-        items.remove(items.size()-1);
-        items.add(item);
-        items.add(null);
         notifyDataSetChanged();
     }
 
 
-    /** ViewHolder */
-     public class EmptyViewHolder extends RecyclerView.ViewHolder{
-
-        private EmptyViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    /** ViewHolder */
-     public class DoneViewHolder extends RecyclerView.ViewHolder{
+    /**
+     * ViewHolder
+     */
+    public class DoneViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_view_title_done)
         TextView titleTextView;
@@ -118,7 +88,7 @@ public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         private DoneViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

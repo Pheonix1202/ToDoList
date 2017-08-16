@@ -1,21 +1,13 @@
-package zakhargoryainov.todolist.home;
+package zakhargoryainov.todolist.data;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
 
-/**
- * Created by Захар on 08.08.2017.
- */
 
 @Singleton
 public class TodoListRoomService {
@@ -33,13 +25,19 @@ public class TodoListRoomService {
     }
 
     public Observable<List<TodoNotation>> getTodoList(){
-        return database.todoDao().getNotations()
+        return database.todoDao().getNotations(false)
                 .toObservable();
     }
 
-    public Completable deleteNotations(List<TodoNotation> notations) {
+    public Observable<List<TodoNotation>> getDoneList(){
+        return database.todoDao().getNotations(true)
+                .toObservable();
+    }
+
+
+    public Completable deleteDoneNotations() {
         return Completable
-                .fromAction(() -> database.todoDao().deleteNotations(notations));
+                .fromAction(() -> database.todoDao().deleteNotations(true));
     }
 
 

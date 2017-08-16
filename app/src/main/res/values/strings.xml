@@ -13,11 +13,16 @@
     <string name="hint_login">E-mail</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm password</string>
-        <!--Login-->
-        <string name="button_sign_in">Sign in</string>
-        <!--Registration-->
-        <string name="button_sign_up">Sign up</string>
-        <string name="on_success_sign_up">You successfully signed up</string>
-        <string name="passwords_do_not_match">Passwords don\'t match</string>
+    <!--Login-->
+    <string name="button_sign_in">Sign in</string>
+    <!--Registration-->
+    <string name="button_sign_up">Sign up</string>
+    <string name="on_success_sign_up">You successfully signed up</string>
+    <string name="passwords_do_not_match">Passwords don\'t match</string>
 
+    <!--Service-->
+    <string name="month_notification">One month left.</string>
+    <string name="week_notification">One week left.</string>
+    <string name="day_notification">Only one day left, hurry up!</string>
+    <string name="hour_notification">This will over in an hour. Check your ToDo List</string>
 </resources>

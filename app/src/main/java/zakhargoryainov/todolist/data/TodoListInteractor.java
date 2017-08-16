@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home;
+package zakhargoryainov.todolist.data;
 
 import java.util.List;
 import javax.inject.Inject;
@@ -17,7 +17,6 @@ public class TodoListInteractor {
                               TodoListFirebaseDatabaseService firebaseService) {
         this.roomService = roomService;
         this.firebaseService = firebaseService;
-
     }
 
     public Completable insertOrUpdateNotation(TodoNotation notation){
@@ -28,8 +27,12 @@ public class TodoListInteractor {
         return roomService.getTodoList();
     }
 
-    public Completable deleteNotations(List<TodoNotation> notations){
-        return  roomService.deleteNotations(notations);
+    public Observable<List<TodoNotation>> getDoneList(){
+        return roomService.getDoneList();
+    }
+
+    public Completable deleteNotations(){
+        return  roomService.deleteDoneNotations();
     }
 
 

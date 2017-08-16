@@ -10,4 +10,5 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 
 public interface TodoDetailsView extends MvpView {
     void extractData(TodoNotation notation);
+    void onSuccess();
 }

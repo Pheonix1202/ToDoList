@@ -5,8 +5,7 @@ import com.arellomobile.mvp.MvpPresenter;
 import javax.inject.Inject;
 
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.TodoListInteractor;
+import zakhargoryainov.todolist.data.TodoListInteractor;
 
 
 public class HomePresenter extends MvpPresenter<HomeView> {

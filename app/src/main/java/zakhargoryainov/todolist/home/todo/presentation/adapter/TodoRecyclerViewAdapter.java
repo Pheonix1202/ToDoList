@@ -16,7 +16,7 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
 
 
-public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerViewAdapter.TodoViewHolder> {
 
     private List<TodoNotation> items;
     private OnNotationClickListener listener;
@@ -30,52 +30,31 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
-        switch (viewType) {
-            case 0:
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.recycler_view_item_empty, parent, false);
-                return new TodoRecyclerViewAdapter.EmptyViewHolder(view);
-
-            case 1:
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.recycler_view_item_todo, parent, false);
-                return new TodoRecyclerViewAdapter.TodoViewHolder(view);
-
-            default:
-                return null;
-        }
+    public TodoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_view_item_todo, parent, false);
+        return new TodoRecyclerViewAdapter.TodoViewHolder(view);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) return 0;
-        else return 1;
-    }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder someHolder, int position) {
-        TodoViewHolder holder;
-        if (someHolder instanceof TodoViewHolder) {
-            holder = (TodoViewHolder) someHolder;
-            TodoNotation notation = items.get(position);
-            holder.dateTextView.setText(notation.getDate());
-            holder.titleTextView.setText(notation.getTitle());
-            switch (notation.getPriority()) {
-                case TodoNotation.TIER_1:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_1));
-                    break;
-                case TodoNotation.TIER_2:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_2));
-                    break;
-                case TodoNotation.TIER_3:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_3));
-                    break;
-                case TodoNotation.TIER_4:
-                    holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_4));
-                    break;
-            }
+    public void onBindViewHolder(TodoViewHolder holder, int position) {
+        TodoNotation notation = items.get(position);
+        holder.dateTextView.setText(notation.getFormattedDeadline());
+        holder.titleTextView.setText(notation.getTitle());
+        switch (notation.getPriority()) {
+            case TodoNotation.TIER_1:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_1));
+                break;
+            case TodoNotation.TIER_2:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_2));
+                break;
+            case TodoNotation.TIER_3:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_3));
+                break;
+            case TodoNotation.TIER_4:
+                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_4));
+                break;
         }
     }
 
@@ -86,16 +65,9 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void setItems(List<TodoNotation> items) {
         this.items = items;
-        items.add(null);
         notifyDataSetChanged();
     }
 
-    public class EmptyViewHolder extends RecyclerView.ViewHolder {
-
-        public EmptyViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
     public class TodoViewHolder extends RecyclerView.ViewHolder {
 

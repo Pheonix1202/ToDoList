@@ -1,13 +1,12 @@
 package zakhargoryainov.todolist.entities;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import com.google.firebase.database.Exclude;
 import lombok.Data;
 
-@Entity(foreignKeys = @ForeignKey(entity = TodoUser.class,childColumns = "nickname",parentColumns = "nickname"))
+@Entity
 public @Data class TodoNotation {
 
     @Exclude
@@ -23,14 +22,16 @@ public @Data class TodoNotation {
     private String title;
     private String body;
     private int priority;
-    private String date;
+    private String formattedDeadline;
+    private long deadlineTimestamp;
     private boolean isDone;
+    private boolean isFailed;
 
     @Ignore
-    public TodoNotation(String title,  String date, int priority) {
+    public TodoNotation(String title, String formattedDeadline, int priority) {
         this.title = title;
         this.priority = priority;
-        this.date = date;
+        this.formattedDeadline = formattedDeadline;
     }
 
     public TodoNotation(){}

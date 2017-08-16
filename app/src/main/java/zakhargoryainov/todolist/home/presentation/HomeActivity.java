@@ -1,5 +1,6 @@
 package zakhargoryainov.todolist.home.presentation;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,17 +10,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.astuetz.PagerSlidingTabStrip;
 
-import javax.inject.Inject;
-
 import zakhargoryainov.todolist.base.MvpAppCompatActivity;
 import zakhargoryainov.todolist.R;
-import zakhargoryainov.todolist.home.TabsPagerAdapter;
+import zakhargoryainov.todolist.data.notifications.TodoListService;
+import zakhargoryainov.todolist.home.presentation.adapter.TabsPagerAdapter;
 
 /**
  * Created by Захар on 02.08.2017.
@@ -35,6 +34,8 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Intent serviceIntent = new Intent(this, TodoListService.class);
+        startService(serviceIntent);
         Typeface typeface = Typeface.create("casual",Typeface.BOLD_ITALIC);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         initActionBar(typeface);

@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home;
+package zakhargoryainov.todolist.home.presentation.adapter;
 
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;

@@ -1,17 +1,12 @@
 package zakhargoryainov.todolist.home.todo.presentation.dialog.create;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,6 +16,8 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -33,9 +30,6 @@ import zakhargoryainov.todolist.base.MvpDialogFragment;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.todo.presentation.listener.OnSuccessDismissListener;
 
-/**
- * Created by Захар on 09.08.2017.
- */
 
 public class TodoCreateDialogFragment extends MvpDialogFragment implements TodoCreateView {
 
@@ -66,11 +60,6 @@ public class TodoCreateDialogFragment extends MvpDialogFragment implements TodoC
     }
 
     @Override
-    public void extractData(TodoNotation notation) {
-
-    }
-
-    @Override
     public void onSuccess() {
         listener.onSuccessfulDismiss();
         dismiss();
@@ -87,33 +76,25 @@ public class TodoCreateDialogFragment extends MvpDialogFragment implements TodoC
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        DisplayMetrics metrics = new DisplayMetrics();
-        Window window = getDialog().getWindow();
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int width = 0, height = 0;
-        width = metrics.widthPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
-        height = metrics.heightPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
-        getDialog().getWindow().setGravity(Gravity.CENTER);
-        getDialog().getWindow().setLayout(width, height);
-    }
-
     @OnClick(R.id.button_confirm)
     public void onConfirmButtonClick() {
         // todo валидация данных
         notation.setTitle(titleEditText.getText().toString());
         notation.setBody(bodyEditText.getText().toString());
         notation.setPriority(priority);
-        notation.setDate(String.format(Locale.ENGLISH,"%02d",datePicker.getDayOfMonth()) + "." +
+        notation.setFormattedDeadline(String.format(Locale.ENGLISH,"%02d",datePicker.getDayOfMonth()) + "." +
                 String.format(Locale.ENGLISH,"%02d",datePicker.getMonth()) + "." +
-                datePicker.getYear() + "    " +
+                datePicker.getYear() + "   " +
                 String.format(Locale.ENGLISH,"%02d",timePicker.getCurrentHour()) + ":" +
                 String.format(Locale.ENGLISH,"%02d",timePicker.getCurrentMinute()));
-        Toast.makeText(getContext(),notation.getDate(),Toast.LENGTH_LONG).show();
+        Calendar calendar = new GregorianCalendar(
+                datePicker.getYear(),
+                datePicker.getMonth(),
+                datePicker.getDayOfMonth(),
+                timePicker.getCurrentHour(),
+                timePicker.getCurrentMinute());
+        notation.setDeadlineTimestamp(calendar.getTimeInMillis());
+
         presenter.insertOrUpdateTodoNotation(notation);
     }
 
@@ -152,5 +133,4 @@ public class TodoCreateDialogFragment extends MvpDialogFragment implements TodoC
                 return -1;
         }
     }
-
 }

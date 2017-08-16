@@ -10,7 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.TodoListInteractor;
+import zakhargoryainov.todolist.data.TodoListInteractor;
 import zakhargoryainov.todolist.home.todo.TodoDialogInteractor;
 
 @InjectViewState
@@ -25,7 +25,6 @@ public class TodoCreatePresenter extends MvpPresenter<TodoCreateView> {
 
     public TodoNotation getCurrentNotation(){
         TodoNotation notation = dialogInteractor.getCurrentNotation();
-        getViewState().extractData(notation);
         return notation;
     }
 
