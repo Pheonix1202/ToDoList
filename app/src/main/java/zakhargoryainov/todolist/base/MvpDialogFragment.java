@@ -34,8 +34,8 @@ public class MvpDialogFragment extends DialogFragment {
         window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         int width = 0, height = 0;
-        width = metrics.widthPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
-        height = metrics.heightPixels - getResources().getDimensionPixelSize(R.dimen.padding_small) * 2;
+        width = metrics.widthPixels;// - getResources().getDimensionPixelSize(R.dimen.padding_normal) * 2;
+        height = metrics.heightPixels - getResources().getDimensionPixelSize(R.dimen.padding_normal)*2;
         getDialog().getWindow().setGravity(Gravity.CENTER);
         getDialog().getWindow().setLayout(width, height);
     }

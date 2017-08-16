@@ -1,7 +1,6 @@
 package zakhargoryainov.todolist.database;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -20,5 +19,8 @@ public interface TodoDao {
 
     @Query("Delete from TodoNotation where isDone = :isDone")
     void deleteNotations(boolean isDone);
+
+    @Query("Select  * from TodoNotation where isDone = :isDone and deadlineTimestamp < :currentTimestamp")
+    Flowable<List<TodoNotation>> getExpiredNotations(boolean isDone, long currentTimestamp);
 
 }
