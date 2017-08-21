@@ -1,53 +1,69 @@
 package zakhargoryainov.todolist.home.todo.presentation.dialog.details;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import zakhargoryainov.todolist.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
+import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.base.MvpDialogFragment;
+import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
+import zakhargoryainov.todolist.home.OnSuccessDismissListener;
+import zakhargoryainov.todolist.home.todo.OnDetailsDialogDismissListener;
 
-/**
- * Created by Захар on 14.08.2017.
- */
 
 public class TodoDetailsDialogFragment extends MvpDialogFragment implements TodoDetailsView{
 
     @InjectPresenter TodoDetailsPresenter presenter;
-    @BindView(R.id.text_view_title)
-    TextView titleTextView;
-    @BindView(R.id.text_view_body)
-    TextView bodyTextView;
-    @BindView(R.id.text_view_priority)
-    TextView priorityTextView;
-    @BindView(R.id.text_view_date)
-    TextView dateTextView;
-    @BindView(R.id.button_done)
-    Button buttonDone;
-
+    @BindView(R.id.text_view_title) TextView titleTextView;
+    @BindView(R.id.text_view_body) TextView bodyTextView;
+    @BindView(R.id.text_view_priority) TextView priorityTextView;
+    @BindView(R.id.text_view_date) TextView dateTextView;
+    @BindView(R.id.button_completed) Button buttonDone;
+    private OnDetailsDialogDismissListener listener;
+    private int itemPosition;
     private TodoNotation notation;
 
-    @Nullable
-    @Override
+
+    public static TodoDetailsDialogFragment newInstance(TodoNotation notation,
+                                                        OnDetailsDialogDismissListener listener,
+                                                        int itemPosition) {
+        TodoDetailsDialogFragment fragment = new TodoDetailsDialogFragment();
+        fragment.notation = notation;
+        fragment.itemPosition = itemPosition;
+        fragment.listener = listener;
+        return fragment;
+    }
+
+    @Override @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog_todo_details, container, false);
         ButterKnife.bind(this, view);
-        notation = presenter.getCurrentNotation();
+        //todo прокинуть слушателей и тудуху
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (notation != null && listener != null)
+        presenter.reinitDialog(notation,itemPosition,listener);
     }
 
     @Override
@@ -55,31 +71,50 @@ public class TodoDetailsDialogFragment extends MvpDialogFragment implements Todo
         titleTextView.setText(notation.getTitle());
         bodyTextView.setText(notation.getBody());
         dateTextView.setText(notation.getFormattedDeadline());
-        priorityTextView.setText(String.valueOf(notation.getPriority()));
+        PriorityViewUtils.setPriority(priorityTextView,notation.getPriority());
+    }
+
+    @OnClick(R.id.button_completed)
+    public void onButtonDoneClick(){
+        presenter.completeTodoNotation();
+    }
+
+    @OnClick(R.id.button_delete)
+    public void onButtonDeleteClick(){
+        presenter.deleteTodoNotation();
     }
 
     @Override
-    public void onSuccess() {
+    public void onCancel(DialogInterface dialog) {
+        listener.onCancel();
+        super.onCancel(dialog);
+    }
+
+    @Override
+    public void onCompleteSuccess() {
+        listener.onCompleteSuccess(itemPosition);
         dismiss();
     }
 
-    @OnClick(R.id.button_done)
-    public void onButtonDoneClick(){
-        PendingIntent pendingIntent = null;
-        notation.setDone(true);
-        presenter.insertOrUpdateTodoNotation(notation);
-        Notification notification = new Notification.Builder(getContext())
-                .setContentTitle("HASAGI")
-                .setContentText("I hate portals")
-                .setSmallIcon(R.drawable.img_slide_arrow_back)
-                .setAutoCancel(true)
-                .addAction(R.drawable.ic_done_all_black_24_px,"Done",pendingIntent)
-                .build();
+    @Override
+    public void onDeleteSuccess() {
+        listener.onDeleteSuccess(itemPosition);
+        dismiss();
+    }
 
-        NotificationManager managerCompat = (NotificationManager)
-                getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+    @Override
+    public void onError(String message) {
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
+    }
 
-        managerCompat.notify(0,notification);
+    @Override
+    public void setPosition(int position) {
+        itemPosition = position;
+    }
+
+    @Override
+    public void setListener(OnDetailsDialogDismissListener listener) {
+        this.listener = listener;
     }
 
 }

@@ -9,13 +9,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.data.TodoListInteractor;
+import zakhargoryainov.todolist.entities.TodoNotation;
+import zakhargoryainov.todolist.home.DialogInteractor;
 
 
 @InjectViewState
 public class DonePresenter extends MvpPresenter<DoneView> {
 
-    @Inject
-    TodoListInteractor todoListInteractor;
+    @Inject TodoListInteractor todoListInteractor;
 
     public DonePresenter() {
         TodoApplication.getAppComponent().inject(this);
@@ -36,6 +37,14 @@ public class DonePresenter extends MvpPresenter<DoneView> {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> getViewState().onSuccess());
+    }
+
+    public void showItems(){
+        getViewState().showItems();
+    }
+
+    public void hideItems(){
+        getViewState().hideItems();
     }
 
 }

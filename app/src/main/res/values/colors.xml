@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#909000</color>
     <color name="colorAccent">#00d89b</color>
     
     <color name="black_transparent_normal">#B2000000</color>
@@ -15,6 +14,11 @@
     <color name="priority_tier_2">#ff8d13</color>
     <color name="priority_tier_3">#ffe926</color>
     <color name="priority_tier_4">#8afa49</color>
+
+    <color name="failed_red">#C80700</color>
+    <color name="completed_green">#00bf00</color>
+
+    <color name="button_retrieve_delete">#d8d8d8</color>
 
 
 </resources>

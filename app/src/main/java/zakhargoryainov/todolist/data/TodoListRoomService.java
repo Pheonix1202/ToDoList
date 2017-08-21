@@ -40,6 +40,10 @@ public class TodoListRoomService {
                 .fromAction(() -> database.todoDao().deleteNotations(true));
     }
 
+    public Completable deleteNotation(TodoNotation notation){
+        return Completable
+                .fromAction(() -> database.todoDao().deleteNotation(notation));
+    }
 
 
 }

@@ -7,7 +7,7 @@ import com.google.firebase.database.Exclude;
 import lombok.Data;
 
 @Entity
-public @Data class TodoNotation {
+public class TodoNotation {
 
     @Exclude
     @Ignore
@@ -35,4 +35,72 @@ public @Data class TodoNotation {
     }
 
     public TodoNotation(){}
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public String getFormattedDeadline() {
+        return formattedDeadline;
+    }
+
+    public void setFormattedDeadline(String formattedDeadline) {
+        this.formattedDeadline = formattedDeadline;
+    }
+
+    public long getDeadlineTimestamp() {
+        return deadlineTimestamp;
+    }
+
+    public void setDeadlineTimestamp(long deadlineTimestamp) {
+        this.deadlineTimestamp = deadlineTimestamp;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public boolean isFailed() {
+        return isFailed;
+    }
+
+    public void setFailed(boolean failed) {
+        isFailed = failed;
+    }
+
+
+
 }

@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home.todo.presentation.listener;
+package zakhargoryainov.todolist.home;
 
 import zakhargoryainov.todolist.entities.TodoNotation;
 
@@ -7,5 +7,5 @@ import zakhargoryainov.todolist.entities.TodoNotation;
  */
 
 public interface OnNotationClickListener {
-    void onNotationClick(TodoNotation notation);
+    void onNotationClick(TodoNotation notation, int position);
 }

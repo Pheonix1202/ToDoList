@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist.home.todo.presentation.listener;
+package zakhargoryainov.todolist.home;
 
 public interface OnSuccessDismissListener {
         void onSuccessfulDismiss();

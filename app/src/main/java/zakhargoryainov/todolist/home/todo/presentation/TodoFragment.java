@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -18,38 +19,37 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import jp.wasabeef.recyclerview.animators.FadeInDownAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import lombok.Getter;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.entities.TodoNotation;
+import zakhargoryainov.todolist.home.todo.OnCreateDialogDismissListener;
+import zakhargoryainov.todolist.home.todo.OnDetailsDialogDismissListener;
 import zakhargoryainov.todolist.home.todo.presentation.adapter.TodoRecyclerViewAdapter;
 import zakhargoryainov.todolist.home.todo.presentation.dialog.create.TodoCreateDialogFragment;
 import zakhargoryainov.todolist.home.todo.presentation.dialog.details.TodoDetailsDialogFragment;
-import zakhargoryainov.todolist.home.todo.presentation.listener.OnSuccessDismissListener;
-import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
+import zakhargoryainov.todolist.home.OnNotationClickListener;
 
 
-public class TodoFragment extends MvpAppCompatFragment implements OnNotationClickListener, OnSuccessDismissListener, TodoView {
+public class TodoFragment extends MvpAppCompatFragment
+        implements OnNotationClickListener, OnDetailsDialogDismissListener, OnCreateDialogDismissListener, TodoView {
 
-    RecyclerView todoRecyclerView;
-    @InjectPresenter
-    TodoPresenter presenter;
-    TodoRecyclerViewAdapter adapter;
-    DialogFragment dialogFragment;
-    private
-    @Getter
-    FloatingActionButton.OnClickListener onFabClickListener;
+    private RecyclerView todoRecyclerView;
+    @InjectPresenter TodoPresenter presenter;
+    private TodoRecyclerViewAdapter adapter;
+    private DialogFragment dialogFragment;
+    private FloatingActionButton.OnClickListener onFabClickListener;
     private Unbinder unbinder;
+    private FloatingActionButton fab;
 
-    public static TodoFragment newInstance() {
-
+    public static TodoFragment newInstance(FloatingActionButton fab) {
         TodoFragment fragment = new TodoFragment();
-        fragment.onFabClickListener = v -> {
-            fragment.presenter.prepareDialogForNewNotation();
-            fragment.todoRecyclerView.setVisibility(View.INVISIBLE);
-            fragment.dialogFragment = TodoCreateDialogFragment.newInstance(fragment);
-            fragment.dialogFragment.show(fragment.getActivity().getSupportFragmentManager(), "+1 Notation");
-        };
+        fragment.setOnFabClickListener();
+        fragment.fab = fab;
         return fragment;
     }
 
@@ -74,26 +74,32 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
     }
 
     @Override
-    public void onNotationClick(TodoNotation notation) {
-        presenter.sendNotationToDialog(notation);
-        dialogFragment = new TodoDetailsDialogFragment();
+    public void onNotationClick(TodoNotation notation, int itemPosition) {
+        presenter.hideItems();
+        dialogFragment = TodoDetailsDialogFragment.newInstance(notation,this,itemPosition);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "za4em?");
     }
 
     @Override
-    public void onSuccessfulDismiss() {
-        adapter.notifyDataSetChanged();
-        todoRecyclerView.setVisibility(View.VISIBLE);
+    public void onCancel() {
+        presenter.showItems();
     }
 
     @Override
-    public void onCancel() {
-        todoRecyclerView.setVisibility(View.VISIBLE);
+    public void onCreateSuccess() {
+        presenter.showItems();
     }
 
-    public OnSuccessDismissListener getOnDismissListener() {
-        return this;
+    @Override
+    public void onCompleteSuccess(int position) {
+        presenter.showItems();
     }
+
+    @Override
+    public void onDeleteSuccess(int position) {
+        presenter.showItems();
+    }
+
 
     @Override
     public void onDataChanged(List<TodoNotation> notations) {
@@ -102,7 +108,7 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
 
     @Override
     public void onDataError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -110,13 +116,46 @@ public class TodoFragment extends MvpAppCompatFragment implements OnNotationClic
         Toast.makeText(getContext(), "DONE", Toast.LENGTH_SHORT).show();
     }
 
+
+    @Override
+    public void hideItems() {
+        todoRecyclerView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showItems() {
+        todoRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    public void setOnFabClickListener() {
+        onFabClickListener = v -> {
+            presenter.hideItems();
+            dialogFragment = TodoCreateDialogFragment.newInstance(this);
+            dialogFragment.show(getActivity().getSupportFragmentManager(), "+1 Notation");
+        };
+    }
+
+    public FloatingActionButton.OnClickListener getOnFabClickListener() {
+        return onFabClickListener;
+    }
+
     private void initRecyclerView() {
         todoRecyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view_todo);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         todoRecyclerView.setLayoutManager(llm);
-        adapter = new TodoRecyclerViewAdapter(this, getContext());
+        adapter = new TodoRecyclerViewAdapter(this);
         todoRecyclerView.setAdapter(adapter);
         todoRecyclerView.addItemDecoration(
                 new EndOffsetItemDecoration(getResources().getDimensionPixelOffset(R.dimen.padding_normal)));
+        todoRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy <= 0) fab.show();
+                else  fab.hide();
+            }
+        });
     }
 }

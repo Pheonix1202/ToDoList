@@ -5,12 +5,14 @@ import javax.inject.Singleton;
 import dagger.Component;
 import zakhargoryainov.todolist.authentication.AuthService;
 import zakhargoryainov.todolist.authentication.registration.RegistrationPresenter;
+import zakhargoryainov.todolist.data.TodoListRoomService;
 import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.di.modules.FirebaseModule;
 import zakhargoryainov.todolist.di.modules.ContextModule;
 import zakhargoryainov.todolist.di.modules.DatabaseModule;
 import zakhargoryainov.todolist.home.done.presentation.DoneFragment;
 import zakhargoryainov.todolist.home.done.presentation.DonePresenter;
+import zakhargoryainov.todolist.home.done.presentation.dialog.details.DoneDetailsPresenter;
 import zakhargoryainov.todolist.home.presentation.HomePresenter;
 import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 import zakhargoryainov.todolist.authentication.AuthInteractor;
@@ -25,9 +27,8 @@ import zakhargoryainov.todolist.home.todo.presentation.dialog.details.TodoDetail
 @Component(modules = {FirebaseModule.class, ContextModule.class, DatabaseModule.class})
 public interface AppComponent  {
     Context getContext();
-    AuthService getAuthService();//todo checkout usage
-    AuthInteractor getAuthInteractor();
     TodoDatabase getTodoDatabase();
+    TodoListRoomService provideRoom();
 
     void inject(LoginPresenter loginPresenter);
     void inject(RegistrationPresenter registrationPresenter);
@@ -39,5 +40,6 @@ public interface AppComponent  {
     void inject(HomePresenter homePresenter);
     void inject(DonePresenter donePresenter);
     void inject(TodoDetailsPresenter todoDetailsPresenter);
+    void inject(DoneDetailsPresenter doneDetailsPresenter);
 
 }

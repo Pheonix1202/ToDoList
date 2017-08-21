@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -20,9 +19,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import zakhargoryainov.todolist.base.MvpAppCompatActivity;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.data.notifications.TodoListService;
-import zakhargoryainov.todolist.home.done.presentation.DoneFragment;
 import zakhargoryainov.todolist.home.presentation.adapter.TabsPagerAdapter;
-import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 /**
  * Created by Захар on 02.08.2017.
@@ -81,7 +78,7 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         TabsPagerAdapter pagerAdapter = new TabsPagerAdapter(getSupportFragmentManager(),
-                getBaseContext());
+                getBaseContext(),fab);
         viewPager.setAdapter(pagerAdapter);
         tabs.setViewPager(viewPager);
         tabs.setTypeface(typeface, Typeface.BOLD);

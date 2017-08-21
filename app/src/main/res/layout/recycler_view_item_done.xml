@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_normal"
     android:background="@drawable/shape_recycler_view_item"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/padding_normal"
-    android:paddingRight="@dimen/paddingRight_indicator"
-    android:layout_marginTop="@dimen/padding_normal">
+    android:orientation="horizontal"
+    android:padding="@dimen/padding_normal"
+    android:paddingRight="@dimen/paddingRight_indicator">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_view_title_done"
-            style="@style/text_field_inside_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/text_view_title"
+            style="@style/text_field"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:paddingBottom="4dp"
-            android:text="Common item title" />
+            android:text="Common item title"
+            android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/text_view_date_done"
-            style="@style/text_field_inside_container"
+            android:id="@+id/text_view_date"
+            style="@style/text_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
@@ -32,12 +35,37 @@
             android:textColor="@color/light_gray" />
     </LinearLayout>
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/image_view_indicator_done"
-        android:layout_width="@dimen/padding_normal"
-        android:layout_height="@dimen/padding_normal"
-        android:layout_gravity="center_vertical|right"
-        app:riv_mutate_background="true"
-        app:riv_oval="true" />
 
-</FrameLayout>
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_weight="2"
+        android:columnCount="3"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/view_priority"
+            style="@style/view_priority"
+            android:layout_width="@dimen/indicator_size"
+            android:layout_height="@dimen/indicator_size"
+            android:layout_column="2"
+            android:layout_margin="4dp" />
+
+        <ImageView
+            android:id="@+id/view_success"
+            style="@style/text_field"
+            android:layout_width="@dimen/indicator_size"
+            android:layout_height="@dimen/indicator_size"
+            android:layout_column="2"
+            android:layout_margin="4dp"
+            android:layout_row="1"
+            android:drawablePadding="4dp"
+            android:src="@drawable/ic_failed"
+            android:textColor="#C80700"
+             />
+
+    </GridLayout>
+
+</LinearLayout>

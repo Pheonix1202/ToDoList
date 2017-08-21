@@ -17,4 +17,6 @@ public interface DoneView extends MvpView{
     void onDataChanged(List<TodoNotation> notations);
     void onDataError(String message);
     void onSuccess();
+    void hideItems();
+    void showItems();
 }

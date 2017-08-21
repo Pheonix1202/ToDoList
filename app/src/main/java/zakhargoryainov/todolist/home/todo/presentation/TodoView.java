@@ -1,5 +1,7 @@
 package zakhargoryainov.todolist.home.todo.presentation;
 
+import android.support.design.widget.FloatingActionButton;
+
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
@@ -17,6 +19,8 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 public interface TodoView  extends MvpView {
     void onDataChanged(List<TodoNotation> notations);
     void onDataError(String message);
-
+    void hideItems();
+    void showItems();
     void onSuccess();
+    void setOnFabClickListener();
 }

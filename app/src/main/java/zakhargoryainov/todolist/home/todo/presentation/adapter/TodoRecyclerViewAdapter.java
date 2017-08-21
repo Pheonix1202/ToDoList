@@ -1,19 +1,24 @@
 package zakhargoryainov.todolist.home.todo.presentation.adapter;
 
 import android.content.Context;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zakhargoryainov.todolist.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
+import zakhargoryainov.todolist.TodoDiffUtilsCallback;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.todo.presentation.listener.OnNotationClickListener;
+import zakhargoryainov.todolist.home.OnNotationClickListener;
+import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 
 public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerViewAdapter.TodoViewHolder> {
@@ -21,12 +26,9 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
     private List<TodoNotation> items;
     private OnNotationClickListener listener;
 
-    @Inject
-    Context context;
-
-    public TodoRecyclerViewAdapter(OnNotationClickListener listener, Context context) {
+    public TodoRecyclerViewAdapter(OnNotationClickListener listener) {
         this.listener = listener;
-        this.context = context;
+        items = new ArrayList<>();
     }
 
     @Override
@@ -36,26 +38,12 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         return new TodoRecyclerViewAdapter.TodoViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(TodoViewHolder holder, int position) {
         TodoNotation notation = items.get(position);
         holder.dateTextView.setText(notation.getFormattedDeadline());
         holder.titleTextView.setText(notation.getTitle());
-        switch (notation.getPriority()) {
-            case TodoNotation.TIER_1:
-                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_1));
-                break;
-            case TodoNotation.TIER_2:
-                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_2));
-                break;
-            case TodoNotation.TIER_3:
-                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_3));
-                break;
-            case TodoNotation.TIER_4:
-                holder.indicatorImageView.setBackgroundColor(context.getResources().getColor(R.color.priority_tier_4));
-                break;
-        }
+        PriorityViewUtils.setPriority(holder.priorityView,notation.getPriority());
     }
 
     @Override
@@ -63,11 +51,13 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         return items == null ? 0 : items.size();
     }
 
-    public void setItems(List<TodoNotation> items) {
-        this.items = items;
-        notifyDataSetChanged();
-    }
 
+    public void setItems(List<TodoNotation> items) {
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new TodoDiffUtilsCallback(this.items, items));
+        result.dispatchUpdatesTo(this);
+//        this.items = items;
+//        notifyDataSetChanged();
+    }
 
     public class TodoViewHolder extends RecyclerView.ViewHolder {
 
@@ -77,14 +67,13 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
         @BindView(R.id.text_view_date)
         TextView dateTextView;
 
-        @BindView(R.id.image_view_indicator)
-        ImageView indicatorImageView;
+        @BindView(R.id.view_priority)
+        TextView priorityView;
 
         public TodoViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(view -> listener.onNotationClick(items.get(getAdapterPosition())));
+            itemView.setOnClickListener(view -> listener.onNotationClick(items.get(getAdapterPosition()),getAdapterPosition()));
         }
-
     }
 }

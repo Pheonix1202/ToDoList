@@ -8,14 +8,12 @@ import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.data.TodoListInteractor;
-import zakhargoryainov.todolist.home.todo.TodoDialogInteractor;
+import zakhargoryainov.todolist.home.DialogInteractor;
 
 
 @InjectViewState
 public class TodoPresenter extends MvpPresenter<TodoView> {
 
-    @Inject
-    TodoDialogInteractor interactor;
     @Inject TodoListInteractor todoListInteractor;
 
     public TodoPresenter() {
@@ -25,6 +23,7 @@ public class TodoPresenter extends MvpPresenter<TodoView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        getViewState().setOnFabClickListener();
         todoListInteractor.getTodoList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -32,13 +31,12 @@ public class TodoPresenter extends MvpPresenter<TodoView> {
                         throwable -> getViewState().onDataError(throwable.getMessage()));
     }
 
-    public void prepareDialogForNewNotation() {
-        interactor.setCurrentNotation(new TodoNotation());
+    public void hideItems(){
+        getViewState().hideItems();
     }
 
-    public void sendNotationToDialog(TodoNotation notation){
-        interactor.setCurrentNotation(notation);
+    public void showItems(){
+        getViewState().showItems();
     }
 
-    //todo повесить обработчики на итемы с выделением
 }

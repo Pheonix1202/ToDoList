@@ -40,6 +40,7 @@
                 android:padding="@dimen/padding_normal">
 
                 <TextView
+                    android:id="@+id/textView"
                     style="@style/text_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,9 +103,9 @@
 
                         <TextView
                             android:id="@+id/view_priority_tier_1"
-                            style="@style/view_priority"
-                            android:layout_width="@dimen/view_priority_size"
-                            android:layout_height="@dimen/view_priority_size" />
+                            style="@style/view_priority_picker"
+                            android:layout_width="@dimen/view_priority_picker_size"
+                            android:layout_height="@dimen/view_priority_picker_size" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -114,9 +115,9 @@
 
                         <TextView
                             android:id="@+id/view_priority_tier_2"
-                            style="@style/view_priority"
-                            android:layout_width="@dimen/view_priority_size"
-                            android:layout_height="@dimen/view_priority_size" />
+                            style="@style/view_priority_picker"
+                            android:layout_width="@dimen/view_priority_picker_size"
+                            android:layout_height="@dimen/view_priority_picker_size" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -126,9 +127,9 @@
 
                         <TextView
                             android:id="@+id/view_priority_tier_3"
-                            style="@style/view_priority"
-                            android:layout_width="@dimen/view_priority_size"
-                            android:layout_height="@dimen/view_priority_size" />
+                            style="@style/view_priority_picker"
+                            android:layout_width="@dimen/view_priority_picker_size"
+                            android:layout_height="@dimen/view_priority_picker_size" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -138,9 +139,9 @@
 
                         <TextView
                             android:id="@+id/view_priority_tier_4"
-                            style="@style/view_priority"
-                            android:layout_width="@dimen/view_priority_size"
-                            android:layout_height="@dimen/view_priority_size" />
+                            style="@style/view_priority_picker"
+                            android:layout_width="@dimen/view_priority_picker_size"
+                            android:layout_height="@dimen/view_priority_picker_size" />
                     </FrameLayout>
                 </LinearLayout>
 
@@ -178,15 +179,14 @@
 
                     <Button
                         android:id="@+id/button_confirm"
-                        style="@style/text_field"
+                        style="@style/dialog_button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
                         android:layout_marginTop="@dimen/button_margin_top"
                         android:layout_weight="1"
                         android:background="@drawable/shape_button_confirm"
-                        android:text="Confirm"
-                        android:textColor="#000" />
+                        android:text="Confirm" />
 
                 </LinearLayout>
             </LinearLayout>

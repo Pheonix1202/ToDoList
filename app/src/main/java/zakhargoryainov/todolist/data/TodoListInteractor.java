@@ -35,5 +35,9 @@ public class TodoListInteractor {
         return  roomService.deleteDoneNotations();
     }
 
+    public Completable deleteNotation(TodoNotation notation){
+        return roomService.deleteNotation(notation);
+    }
+
 
 }

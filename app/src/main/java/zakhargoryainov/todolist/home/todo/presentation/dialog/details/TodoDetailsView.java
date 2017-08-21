@@ -3,12 +3,14 @@ package zakhargoryainov.todolist.home.todo.presentation.dialog.details;
 import com.arellomobile.mvp.MvpView;
 
 import zakhargoryainov.todolist.entities.TodoNotation;
+import zakhargoryainov.todolist.home.todo.OnDetailsDialogDismissListener;
 
-/**
- * Created by Захар on 14.08.2017.
- */
 
 public interface TodoDetailsView extends MvpView {
     void extractData(TodoNotation notation);
-    void onSuccess();
+    void onCompleteSuccess();
+    void onDeleteSuccess();
+    void onError(String message);
+    void setPosition(int position);
+    void setListener(OnDetailsDialogDismissListener listener);
 }

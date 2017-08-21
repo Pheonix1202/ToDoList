@@ -1,4 +1,6 @@
-package zakhargoryainov.todolist.home.todo;
+package zakhargoryainov.todolist.home;
+
+import android.support.v4.util.Pair;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -6,12 +8,12 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 
 
 @Singleton
-public class TodoDialogInteractor {
+public class DialogInteractor {
 
     private TodoNotation currentNotation;
 
     @Inject
-    public TodoDialogInteractor() {}
+    public DialogInteractor() {}
 
     public TodoNotation getCurrentNotation(){
         return currentNotation;

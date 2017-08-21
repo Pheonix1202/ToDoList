@@ -1,7 +1,6 @@
 package zakhargoryainov.todolist.home.presentation.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,13 +16,13 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     private DoneFragment doneFragment;
     private String tabTitles[];
 
-    public TabsPagerAdapter(FragmentManager fm, Context context) {
+    public TabsPagerAdapter(FragmentManager fm, Context context, FloatingActionButton fab) {
         super(fm);
         tabTitles = new String[] {
                 context.getString(R.string.tab_title_todo),
                 context.getString(R.string.tab_title_done)};
-        doneFragment = new DoneFragment();
-        todoFragment = TodoFragment.newInstance();
+        doneFragment = DoneFragment.newInstance(fab);
+        todoFragment = TodoFragment.newInstance(fab);
     }
 
     @Override

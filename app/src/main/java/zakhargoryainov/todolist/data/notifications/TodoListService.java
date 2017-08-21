@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,11 +17,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
+import zakhargoryainov.todolist.data.TodoListRoomService;
 import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
 
 
 public class TodoListService extends Service {
+
+    public static final String TITLE = "zakhargoryainov.todolist.TITLE";
+    public static final String MESSAGE = "zakhargoryainov.todolist.MESSAGE";
+    public static final String IS_EXPIRED = "zakhargoryainov.todolist.IS_EXPIRED";
 
     private static final long DURATION_MONTH = 2629746000l,
             DURATION_WEEK = 604800000,
@@ -28,24 +34,23 @@ public class TodoListService extends Service {
             DURATION_HOUR = 3600000;
 
     private AlarmManager alarmManager;
-    private TodoDatabase todoDatabase;
+    private TodoDatabase database;
     private int uniqueId = 0;
     private List<PendingIntent> pendingIntents;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        todoDatabase = TodoApplication.getAppComponent().getTodoDatabase();
-        todoDatabase.todoDao().getNotations(false)
-                .toObservable()
+        database = TodoApplication.getAppComponent().getTodoDatabase();
+        TodoListRoomService roomService = TodoApplication.getAppComponent().provideRoom();
+        roomService.getTodoList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(this::setAlarms)
                 .subscribe();
         pendingIntents = new ArrayList<>();
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        todoDatabase.todoDao().getExpiredNotations(false, Calendar.getInstance().getTimeInMillis())
+        database.todoDao().getExpiredNotations(false,System.currentTimeMillis())
                 .toObservable()
                 .subscribeOn(Schedulers.io())
                 .doOnNext(this::setNotationFailed)
@@ -73,7 +78,8 @@ public class TodoListService extends Service {
     }
 
     private void trySetSingleAlarm(TodoNotation notation, long timeCurrent, long timeOffset) {
-        String message = "Time for " + notation.getTitle() + "has been expired. You lose!";
+        String message = "";
+        if (timeOffset == 0) message = getString(R.string.todo_expired_notification, notation.getTitle());
         if (timeOffset == DURATION_MONTH) message = getString(R.string.month_notification);
         if (timeOffset == DURATION_WEEK) message = getString(R.string.week_notification);
         if (timeOffset == DURATION_DAY) message = getString(R.string.day_notification);
@@ -81,10 +87,10 @@ public class TodoListService extends Service {
 
         if (timeCurrent < notation.getDeadlineTimestamp() - timeOffset) {
             Intent intent = new Intent(this, AlarmReceiver.class);
-            intent.putExtra("title", notation.getTitle());
-            intent.putExtra("message", message);
-            if (timeOffset != 0) intent.putExtra("over deadline", false);
-            else intent.putExtra("over deadline", true);
+            intent.putExtra(TITLE, notation.getTitle());
+            intent.putExtra(MESSAGE, message);
+            if (timeOffset != 0) intent.putExtra(IS_EXPIRED, false);
+            else intent.putExtra(IS_EXPIRED, true);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, uniqueId++, intent, 0);
             pendingIntents.add(pendingIntent);
             alarmManager.set(AlarmManager.RTC,
@@ -94,10 +100,12 @@ public class TodoListService extends Service {
     }
 
     private void setNotationFailed(List<TodoNotation> notations) {
+        if (notations != null) Log.d("TimeStamp",String.valueOf(notations.size()));
+        else Log.d("TimeStamp", "null notations");
         for(TodoNotation notation: notations) {
-            notation.setFailed(false);
+            notation.setFailed(true);
             notation.setDone(true);
-            todoDatabase.todoDao().insertOrUpdateNotation(notation);
+            database.todoDao().insertOrUpdateNotation(notation);
         }
     }
 }

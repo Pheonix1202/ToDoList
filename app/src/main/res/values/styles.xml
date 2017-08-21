@@ -29,11 +29,22 @@
         <item name="android:background">@drawable/shape_button_sign_in</item>
     </style>
 
+    <style name="view_priority_picker" parent="view_priority">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/view_priority_picker_text_size</item>
+    </style>
+
+
     <style name="view_priority">
         <item name="android:textSize">@dimen/view_priority_text_size</item>
         <item name="android:fontFamily">casual</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
     </style>
+    
+    <style name="dialog_button" parent="text_field">
+        <item name="android:drawablePadding">@dimen/padding_small</item>
+    </style>
+
+
 
 </resources>
