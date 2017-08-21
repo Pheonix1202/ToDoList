@@ -53,10 +53,10 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
 
 
     public void setItems(List<TodoNotation> items) {
-        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new TodoDiffUtilsCallback(this.items, items));
-        result.dispatchUpdatesTo(this);
-//        this.items = items;
-//        notifyDataSetChanged();
+//        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new TodoDiffUtilsCallback(this.items, items));
+//        result.dispatchUpdatesTo(this);
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     public class TodoViewHolder extends RecyclerView.ViewHolder {

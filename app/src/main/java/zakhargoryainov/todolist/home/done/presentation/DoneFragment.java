@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.dgreenhalgh.android.simpleitemdecoration.linear.EndOffsetItemDecoration;
 import java.util.List;
-import lombok.Getter;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
@@ -30,7 +29,7 @@ public class DoneFragment extends MvpAppCompatFragment
     @InjectPresenter DonePresenter presenter;
     private RecyclerView doneRecyclerView;
     private DoneRecyclerViewAdapter adapter;
-    private @Getter FloatingActionButton.OnClickListener onFabClickListener;
+    private FloatingActionButton.OnClickListener onFabClickListener;
     private DialogFragment dialogFragment;
     private FloatingActionButton fab;
 
@@ -92,6 +91,14 @@ public class DoneFragment extends MvpAppCompatFragment
         doneRecyclerView.setAdapter(adapter);
         doneRecyclerView.addItemDecoration(
                 new EndOffsetItemDecoration(getResources().getDimensionPixelOffset(R.dimen.padding_normal)));
+        doneRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy <= 0) fab.show();
+                else  fab.hide();
+            }
+        });
     }
 
     @Override
@@ -118,4 +125,11 @@ public class DoneFragment extends MvpAppCompatFragment
 //        doneRecyclerView.setItemAnimator();
         adapter.notifyItemRemoved(position);
     }
+
+
+    public FloatingActionButton.OnClickListener getOnFabClickListener() {
+        return onFabClickListener;
+    }
+
+
 }

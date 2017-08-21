@@ -4,7 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import com.google.firebase.database.Exclude;
-import lombok.Data;
 
 @Entity
 public class TodoNotation {
@@ -44,6 +43,17 @@ public class TodoNotation {
     public void setId(int id) {
         this.id = id;
     }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
 
     public String getNickname() {
         return nickname;

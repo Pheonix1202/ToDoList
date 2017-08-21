@@ -97,21 +97,10 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                fab.show();
             }
         });
         fab.setOnClickListener(pagerAdapter.getFabListener(0));
-    }
-
-
-    @Override
-    public void onAdditionSuccess() {
-
-    }
-
-    @Override
-    public void onAdditionFailure() {
-
     }
 }
 
