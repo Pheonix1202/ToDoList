@@ -1,11 +1,50 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/black_transparent_light</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="text_field">
+        <item name="android:textSize">@dimen/text_size_common</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">casual</item>
+    </style>
+
+    <style name="text_field_inside_container" parent="text_field">
+        <item name="android:paddingTop">@dimen/padding_normal</item>
+        <item name="android:paddingBottom">@dimen/padding_normal</item>
+    </style>
+
+    <style name="edit_text" parent="text_field_inside_container">
+        <item name="android:layout_marginBottom">@dimen/padding_normal</item>
+        <item name="android:paddingLeft">@dimen/padding_left_inside_edit_text</item>
+        <item name="android:background">@drawable/shape_edit_text_auth</item>
+    </style>
+
+    <style name="auth_button_style" parent="text_field_inside_container">
+        <item name="android:layout_marginTop">@dimen/button_margin_top</item>
+        <item name="android:background">@drawable/shape_button_sign_in</item>
+    </style>
+
+    <style name="view_priority_picker" parent="view_priority">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/view_priority_picker_text_size</item>
+    </style>
+
+
+    <style name="view_priority">
+        <item name="android:textSize">@dimen/view_priority_text_size</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="dialog_button" parent="text_field">
+        <item name="android:drawablePadding">@dimen/padding_small</item>
+    </style>
+
+
 
 </resources>

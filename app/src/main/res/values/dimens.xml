@@ -1,10 +1,29 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_large">32dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
-    <dimen name="navigation_drawer_width">240dp</dimen>
+    <!--Base-->
+    <dimen name="corner_radius_common">10dp</dimen>
+    <dimen name="text_size_common">16sp</dimen>
+    <!--EditText-->
+    <dimen name="padding_left_inside_edit_text">24dp</dimen>
+    <dimen name="stroke_width_common">2dp</dimen>
+    <!--Buttons-->
+    <dimen name="button_margin_top">8dp</dimen>
+    <!--DotProgressBar-->
+    <dimen name="progress_bar_margin_top">8dp</dimen>
+    <dimen name="progress_bar_height">20dp</dimen>
+    <!--RecyclerView Item-->
+    <dimen name="paddingRight_indicator">20dp</dimen>
+    <dimen name="indicator_size">32dp</dimen>
+    <!--NavigationDrawer-->
+    <dimen name="photo_width_height">64dp</dimen>
+    <!--Priority-->
+    <dimen name="view_priority_picker_size">58dp</dimen>
+    <dimen name="view_priority_picker_text_size">28sp</dimen>
+    <dimen name="view_priority_text_size">22sp</dimen>
+
 </resources>

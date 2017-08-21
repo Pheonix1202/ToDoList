@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_transparent_light"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:fontFamily="casual"
+        android:text="Sign up"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/padding_large"
+        android:paddingLeft="@dimen/padding_large"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_text_email"
+            style="@style/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_login"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/edit_text_password"
+            style="@style/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_password"
+            android:inputType="textVisiblePassword" />
+
+        <EditText
+            android:id="@+id/edit_text_confirm_password"
+            style="@style/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_confirm_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/button_sign_up"
+            style="@style/auth_button_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_button_sign_in"
+            android:gravity="center"
+            android:text="Go"
+            android:textAllCaps="false" />
+        <com.github.silvestrpredko.dotprogressbar.DotProgressBar
+            android:layout_marginTop="@dimen/progress_bar_margin_top"
+            android:id="@+id/dot_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress_bar_height"
+            android:layout_gravity="center_vertical"
+            android:visibility="invisible"
+            app:amount="4"
+            app:animationDirection="right"
+            app:duration="@android:integer/config_mediumAnimTime"
+            app:endColor="@color/white"
+            app:startColor="@color/light_gray" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/img_slide_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_field_inside_container"
+            android:text="Swipe back to sign in"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="22dp"
+            android:rotation="2"/>
+    </FrameLayout>
+
+</FrameLayout>

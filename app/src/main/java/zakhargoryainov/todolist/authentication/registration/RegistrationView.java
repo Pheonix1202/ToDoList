@@ -1,18 +1,21 @@
-package zakhargoryainov.todolist.todo.authentication.registration;
+package zakhargoryainov.todolist.authentication.registration;
 
+import android.support.annotation.StringRes;
 import com.arellomobile.mvp.MvpView;
+import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
-/**
- * Created by Захар on 04.08.2017.
- */
 
+@StateStrategyType(AddToEndStrategy.class)
 public interface RegistrationView extends MvpView {
 
     void onSuccessSignUp();
 
-    void onFailedSignUp();
+    void showError(@StringRes int message);
 
-    void ShowProgress();
+    void showError(String message);
 
-    void HideProgress();
+    void showProgress();
+
+    void hideProgress();
 }

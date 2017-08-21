@@ -1,7 +1,24 @@
 <resources>
-    <string name="app_name">List</string>
-    <string name="tab_title_done">COMPLETED</string>
+    <!--Base-->
+    <string name="app_name"> To Do List</string>
+    <!--Home-->
+    <string name="tab_title_done">DONE</string>
     <string name="tab_title_todo">TO DO</string>
-    <string name="button_exit">Sign out</string>
-    <string name="button_change_avatar">Change avatar</string>
+
+    <!--Navigation Menu-->
+
+    <!--Authentication-->
+    <string name="hint_login">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+        <!--Login-->
+    <!--Registration-->
+    <string name="passwords_do_not_match">Passwords don\'t match</string>
+
+    <!--Service-->
+    <string name="month_notification">One month left.</string>
+    <string name="week_notification">One week left.</string>
+    <string name="day_notification">Only one day left, hurry up!</string>
+    <string name="hour_notification">This will over in an hour. Check your ToDo List</string>
+    <string name="todo_expired_notification">"Time for %s has been expired. You lose!"</string>
 </resources>
