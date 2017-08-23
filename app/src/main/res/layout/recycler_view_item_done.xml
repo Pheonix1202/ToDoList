@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/padding_normal"
+    android:layout_marginLeft="@dimen/padding_normal"
+    android:layout_marginRight="@dimen/padding_normal"
     android:background="@drawable/shape_recycler_view_item"
     android:orientation="horizontal"
     android:padding="@dimen/padding_normal"

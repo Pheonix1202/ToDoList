@@ -1,7 +1,5 @@
 package zakhargoryainov.todolist.home.todo.presentation.adapter;
 
-import android.content.Context;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +8,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import zakhargoryainov.todolist.PriorityViewUtils;
+import zakhargoryainov.todolist.utils.view.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
-import zakhargoryainov.todolist.TodoDiffUtilsCallback;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.OnNotationClickListener;
-import zakhargoryainov.todolist.home.todo.presentation.TodoFragment;
 
 
 public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerViewAdapter.TodoViewHolder> {
@@ -53,9 +49,9 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
 
 
     public void setItems(List<TodoNotation> items) {
-//        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new TodoDiffUtilsCallback(this.items, items));
-//        result.dispatchUpdatesTo(this);
+        //DiffUtil.DiffResult result = DiffUtil.calculateDiff(new TodoDiffUtilsCallback(this.items, items));
         this.items = items;
+        // result.dispatchUpdatesTo(this);
         notifyDataSetChanged();
     }
 

@@ -8,15 +8,14 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.data.TodoListInteractor;
-import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.DialogInteractor;
+import zakhargoryainov.todolist.data.DataInteractor;
 
 
 @InjectViewState
 public class DonePresenter extends MvpPresenter<DoneView> {
 
-    @Inject TodoListInteractor todoListInteractor;
+    @Inject
+    DataInteractor dataInteractor;
 
     public DonePresenter() {
         TodoApplication.getAppComponent().inject(this);
@@ -25,7 +24,7 @@ public class DonePresenter extends MvpPresenter<DoneView> {
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        todoListInteractor.getDoneList()
+        dataInteractor.getDoneList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(notations -> getViewState().onDataChanged(notations),
@@ -33,7 +32,7 @@ public class DonePresenter extends MvpPresenter<DoneView> {
     }
 
     public void deleteNotations(){
-        todoListInteractor.deleteNotations()
+        dataInteractor.deleteNotations()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> getViewState().onSuccess());

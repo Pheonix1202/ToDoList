@@ -9,21 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
-
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.dgreenhalgh.android.simpleitemdecoration.linear.EndOffsetItemDecoration;
-
 import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import jp.wasabeef.recyclerview.animators.FadeInDownAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
-
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.entities.TodoNotation;

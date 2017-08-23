@@ -1,4 +1,4 @@
-package zakhargoryainov.todolist;
+package zakhargoryainov.todolist.utils.diffUtils;
 
 import android.support.v7.util.DiffUtil;
 
@@ -37,7 +37,7 @@ public class TodoDiffUtilsCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldList.get(oldItemPosition).equals(newList.get(newItemPosition));
+        return oldList.get(oldItemPosition).getTitle().equals(newList.get(newItemPosition).getTitle());
     }
 
 

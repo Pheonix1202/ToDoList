@@ -13,7 +13,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.data.TodoListRoomService;
 import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import static android.content.Context.NOTIFICATION_SERVICE;

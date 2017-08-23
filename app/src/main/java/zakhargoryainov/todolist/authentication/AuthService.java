@@ -19,8 +19,8 @@ public class AuthService {
         return Completable.create(e -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> e.onComplete())
                 .addOnFailureListener(e::onError))
-                .doOnComplete(() -> Log.d("FB_COMPLETE",auth.getCurrentUser().getEmail()))
-                .doOnError(throwable -> Log.d("FB_ERROR",throwable.getLocalizedMessage()));
+                .doOnComplete(() -> Log.d("FIREBASE_AUTH",auth.getCurrentUser().getEmail()))
+                .doOnError(throwable -> Log.d("FIREBASE_AUTH",throwable.getLocalizedMessage()));
     }
 
     public Completable signUp(String email, String password) {

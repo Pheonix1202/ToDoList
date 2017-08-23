@@ -3,21 +3,15 @@ package zakhargoryainov.todolist.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.provider.Settings;
+
 import com.google.firebase.database.Exclude;
 
 @Entity
 public class TodoNotation {
 
-    @Exclude
-    @Ignore
-    public static final int TIER_1 = 1,
-            TIER_2 = 2,
-            TIER_3 = 3,
-            TIER_4 = 4;
-
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String nickname;
+    @PrimaryKey
+    private String id;
     private String title;
     private String body;
     private int priority;
@@ -31,16 +25,19 @@ public class TodoNotation {
         this.title = title;
         this.priority = priority;
         this.formattedDeadline = formattedDeadline;
+        id = String.valueOf(System.currentTimeMillis());
     }
 
-    public TodoNotation(){}
+    public TodoNotation(){
+        id = String.valueOf(System.currentTimeMillis());
+    }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,16 +48,6 @@ public class TodoNotation {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getBody() {
@@ -110,7 +97,5 @@ public class TodoNotation {
     public void setFailed(boolean failed) {
         isFailed = failed;
     }
-
-
 
 }

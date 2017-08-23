@@ -5,8 +5,6 @@
     android:background="@android:color/transparent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_done"
-        android:paddingLeft="@dimen/padding_normal"
-        android:paddingRight="@dimen/padding_normal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </FrameLayout>

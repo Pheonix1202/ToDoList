@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import zakhargoryainov.todolist.PriorityViewUtils;
+import zakhargoryainov.todolist.utils.view.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.base.MvpDialogFragment;

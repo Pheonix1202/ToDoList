@@ -9,14 +9,15 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
+import zakhargoryainov.todolist.data.DataInteractor;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.data.TodoListInteractor;
 import zakhargoryainov.todolist.home.todo.OnCreateDialogDismissListener;
 
 @InjectViewState
 public class TodoCreatePresenter extends MvpPresenter<TodoCreateView> {
 
-    @Inject  TodoListInteractor todoListInteractor;
+    @Inject
+    DataInteractor dataInteractor;
 
     public TodoCreatePresenter() {
         TodoApplication.getAppComponent().inject(this);
@@ -25,7 +26,7 @@ public class TodoCreatePresenter extends MvpPresenter<TodoCreateView> {
     public void addNewNotation(TodoNotation notation) {
         if (notation.getTitle().length() < 1) getViewState().onError("empty title isn't allowed");
         else if (notation.getDeadlineTimestamp() < System.currentTimeMillis()) getViewState().onError("you can't schedule your past");
-        else todoListInteractor.insertOrUpdateNotation(notation)
+        else dataInteractor.insertNotation(notation)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(() -> Log.d("Room","Insertion completed"))

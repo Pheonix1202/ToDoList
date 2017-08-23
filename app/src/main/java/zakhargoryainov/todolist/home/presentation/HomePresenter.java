@@ -5,12 +5,12 @@ import com.arellomobile.mvp.MvpPresenter;
 import javax.inject.Inject;
 
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.data.TodoListInteractor;
+import zakhargoryainov.todolist.data.DataInteractor;
 
 
 public class HomePresenter extends MvpPresenter<HomeView> {
     @Inject
-    TodoListInteractor interactor;
+    DataInteractor interactor;
 
     public HomePresenter() {
         TodoApplication.getAppComponent().inject(this);

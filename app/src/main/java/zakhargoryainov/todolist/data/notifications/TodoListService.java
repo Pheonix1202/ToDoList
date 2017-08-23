@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.data.TodoListRoomService;
+import zakhargoryainov.todolist.data.RoomStrategy;
 import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
 
@@ -42,8 +41,8 @@ public class TodoListService extends Service {
     public void onCreate() {
         super.onCreate();
         database = TodoApplication.getAppComponent().getTodoDatabase();
-        TodoListRoomService roomService = TodoApplication.getAppComponent().provideRoom();
-        roomService.getTodoList()
+        RoomStrategy roomStrategy = TodoApplication.getAppComponent().provideRoom();
+        roomStrategy.getTodoList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(this::setAlarms)

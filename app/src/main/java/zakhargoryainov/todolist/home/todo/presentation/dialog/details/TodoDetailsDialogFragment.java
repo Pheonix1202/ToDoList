@@ -6,25 +6,19 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import zakhargoryainov.todolist.PriorityViewUtils;
+import zakhargoryainov.todolist.utils.view.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
-import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.base.MvpDialogFragment;
-import zakhargoryainov.todolist.database.TodoDatabase;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.home.OnSuccessDismissListener;
 import zakhargoryainov.todolist.home.todo.OnDetailsDialogDismissListener;
 
 

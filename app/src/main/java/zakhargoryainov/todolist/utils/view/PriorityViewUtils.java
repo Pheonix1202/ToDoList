@@ -1,10 +1,12 @@
-package zakhargoryainov.todolist;
+package zakhargoryainov.todolist.utils.view;
 
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
+
+import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.app.TodoApplication;
 
 public class PriorityViewUtils {

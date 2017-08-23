@@ -10,12 +10,12 @@ import zakhargoryainov.todolist.entities.TodoNotation;
 
 
 @Singleton
-public class TodoListRoomService {
+public class RoomStrategy {
 
     private TodoDatabase database;
 
     @Inject
-    public TodoListRoomService(TodoDatabase database){
+    public RoomStrategy(TodoDatabase database){
         this.database = database;
     }
 

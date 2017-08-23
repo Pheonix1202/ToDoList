@@ -1,20 +1,20 @@
 package zakhargoryainov.todolist.home.done.presentation.dialog.details;
 
-import android.support.v4.util.Pair;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.data.TodoListInteractor;
+import zakhargoryainov.todolist.data.DataInteractor;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.done.OnDoneDialogDismissListener;
 
 @InjectViewState
 public class DoneDetailsPresenter extends MvpPresenter<DoneDetailsView> {
 
-    @Inject TodoListInteractor todoListInteractor;
+    @Inject
+    DataInteractor dataInteractor;
     private TodoNotation notation;
 
     public DoneDetailsPresenter() {
@@ -31,7 +31,7 @@ public class DoneDetailsPresenter extends MvpPresenter<DoneDetailsView> {
     public void retrieveNotation() {
         notation.setFailed(false);
         notation.setDone(false);
-        todoListInteractor.insertOrUpdateNotation(notation)
+        dataInteractor.insertNotation(notation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(()-> getViewState().onRetrieveSuccess())
@@ -40,7 +40,7 @@ public class DoneDetailsPresenter extends MvpPresenter<DoneDetailsView> {
     }
 
     public void deleteNotation() {
-        todoListInteractor.deleteNotation(notation)
+        dataInteractor.deleteNotation(notation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(()->getViewState().onDeleteSuccess())

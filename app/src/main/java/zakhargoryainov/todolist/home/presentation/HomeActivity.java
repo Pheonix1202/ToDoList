@@ -37,9 +37,6 @@ public class HomeActivity extends MvpAppCompatActivity implements HomeView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        // TODO: 16.08.2017 replace service to main activity
-        Intent serviceIntent = new Intent(this, TodoListService.class);
-        startService(serviceIntent);
         Typeface typeface = Typeface.create("casual", Typeface.BOLD_ITALIC);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         initActionBar(typeface);

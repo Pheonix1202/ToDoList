@@ -7,14 +7,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
 import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.data.TodoListInteractor;
+import zakhargoryainov.todolist.data.DataInteractor;
 import zakhargoryainov.todolist.home.todo.OnDetailsDialogDismissListener;
 
 
 @InjectViewState
 public class TodoDetailsPresenter extends MvpPresenter<TodoDetailsView> {
 
-    @Inject TodoListInteractor todoListInteractor;
+    @Inject
+    DataInteractor dataInteractor;
     private TodoNotation notation;
 
     public TodoDetailsPresenter(){
@@ -31,7 +32,7 @@ public class TodoDetailsPresenter extends MvpPresenter<TodoDetailsView> {
     public void completeTodoNotation(){
         notation.setFailed(false);
         notation.setDone(true);
-        todoListInteractor.insertOrUpdateNotation(notation)
+        dataInteractor.insertNotation(notation)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> getViewState().onCompleteSuccess(),
@@ -39,7 +40,7 @@ public class TodoDetailsPresenter extends MvpPresenter<TodoDetailsView> {
     }
 
     public void deleteTodoNotation(){
-        todoListInteractor.deleteNotation(notation)
+        dataInteractor.deleteNotation(notation)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(()->getViewState().onDeleteSuccess(),

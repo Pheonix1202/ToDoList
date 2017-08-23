@@ -9,20 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import zakhargoryainov.todolist.PriorityViewUtils;
+import zakhargoryainov.todolist.utils.view.PriorityViewUtils;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.entities.TodoNotation;
 import zakhargoryainov.todolist.home.OnNotationClickListener;
-
-import static zakhargoryainov.todolist.entities.TodoNotation.*;
 
 
 public class DoneRecyclerViewAdapter extends RecyclerView.Adapter<DoneRecyclerViewAdapter.DoneViewHolder> {

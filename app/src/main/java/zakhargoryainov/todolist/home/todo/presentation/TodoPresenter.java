@@ -6,15 +6,14 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import zakhargoryainov.todolist.app.TodoApplication;
-import zakhargoryainov.todolist.entities.TodoNotation;
-import zakhargoryainov.todolist.data.TodoListInteractor;
-import zakhargoryainov.todolist.home.DialogInteractor;
+import zakhargoryainov.todolist.data.DataInteractor;
 
 
 @InjectViewState
 public class TodoPresenter extends MvpPresenter<TodoView> {
 
-    @Inject TodoListInteractor todoListInteractor;
+    @Inject
+    DataInteractor dataInteractor;
 
     public TodoPresenter() {
         TodoApplication.getAppComponent().inject(this);
@@ -24,7 +23,7 @@ public class TodoPresenter extends MvpPresenter<TodoView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().setOnFabClickListener();
-        todoListInteractor.getTodoList()
+        dataInteractor.getTodoList()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(notations -> getViewState().onDataChanged(notations),

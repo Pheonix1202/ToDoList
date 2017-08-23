@@ -22,7 +22,6 @@ import zakhargoryainov.todolist.base.MvpAppCompatFragment;
 import zakhargoryainov.todolist.R;
 import zakhargoryainov.todolist.home.presentation.HomeActivity;
 
-//todo check why mvpFragment doesn't work correctly unlike mvpActivity
 public class LoginFragment extends MvpAppCompatFragment implements LoginView {
 
     @InjectPresenter
@@ -61,14 +60,13 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
 
     @OnClick(R.id.button_sign_in)
     public void OnSignInClick(){
-        loginPresenter.signIn( //todo surround fields with format exceptions?
+        loginPresenter.signIn(
                 editTexts.get(0).getText().toString(),
                 editTexts.get(1).getText().toString());
     }
 
     @Override
     public void onSuccessSignIn() {
-        Toast.makeText(getContext(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
